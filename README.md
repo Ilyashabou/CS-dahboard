@@ -28,34 +28,6 @@ A comprehensive web-based dashboard for monitoring and managing cybersecurity sc
 - **AI Summarizer**: Uses Gemini API to create concise, actionable summaries
 - **Telegram Integration**: Sends notifications with scan results
 
-## Directory Structure
-
-```
-├── app.py                  # Main Flask application
-├── main.py                 # CLI interface for running scans
-├── schedule_runner.py      # Background scheduler for automated scans
-├── requirements.txt        # Python dependencies
-├── .env                    # Environment variables and API keys
-├── scanners/               # Security scanning modules
-│   ├── ssl_checker.py      # SSL/TLS certificate verification
-│   ├── nmap_scanner.py     # Port scanning with Nmap
-│   ├── darkweb_checker.py  # Dark web exposure checks
-│   └── zap_scanner.py      # OWASP ZAP integration
-├── utils/                  # Utility functions
-│   ├── helpers.py          # Common helper functions
-│   ├── report_summarizer.py # AI-powered report summarization
-│   ├── cve_news_service.py # CVE news fetching and processing
-│   └── cve_scheduler.py    # Scheduler for CVE updates
-├── templates/              # HTML templates
-│   ├── index.html          # Main dashboard interface
-│   ├── scan_report.html    # Report template
-│   └── cve_news_component.html # CVE news display component
-├── results/                # Scan results storage
-│   ├── manual/             # Manual scan reports
-│   └── scheduled/          # Scheduled scan reports
-└── ZAP_2.16.1/             # OWASP ZAP installation
-```
-
 ## Prerequisites
 
 - Python 3.6+
