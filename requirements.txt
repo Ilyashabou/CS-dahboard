@@ -1,0 +1,8 @@
+click
+requests
+rich
+python-dotenv
+jinja2
+python-gvm>=22.9.0
+Flask
+Flask-SocketIO

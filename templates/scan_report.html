@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cybersecurity Scan Report</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
+    <style>
+        body {
+            background: #f6f8fb;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        .report-container {
+            max-width: 800px;
+            margin: 2em auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px 0 rgba(0,0,0,0.10);
+            padding: 2em 2.5em 2.5em 2.5em;
+        }
+        .title {
+            color: #2b365e;
+            text-align: center;
+            margin-bottom: 1.5em;
+        }
+        .scan-section {
+            margin-bottom: 2em;
+            padding: 1.5em 1.5em 1em 1.5em;
+            border-radius: 12px;
+            background: #f9fafb;
+            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.04);
+        }
+        .scan-section:last-child {
+            margin-bottom: 0;
+        }
+        .subtitle {
+            color: #3d4a6e;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 0.2em 1em;
+            border-radius: 999px;
+            font-size: 0.95em;
+            font-weight: 600;
+            margin-left: 0.5em;
+        }
+        .status-success {
+            background: #e6f7e6;
+            color: #1d8a34;
+        }
+        .status-error {
+            background: #ffeaea;
+            color: #d7263d;
+        }
+        .status-warning {
+            background: #fff5e6;
+            color: #f5a623;
+        }
+        ul, .info-list {
+            list-style: none;
+            padding: 0;
+        }
+        .info-list li {
+            margin-bottom: 0.3em;
+        }
+        .result-table {
+            width: 100%;
+            margin-top: 1em;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.04);
+        }
+        .result-table th {
+            background: #f1f3f6;
+            color: #3d4a6e;
+            font-weight: 600;
+        }
+        .result-table th, .result-table td {
+            padding: 0.7em 0.8em;
+            border-bottom: 1px solid #ececec;
+            text-align: left;
+        }
+        .result-table tr:last-child td {
+            border-bottom: none;
+        }
+        .success {
+            color: #1d8a34;
+            font-weight: bold;
+        }
+        .error {
+            color: #d7263d;
+            font-weight: bold;
+        }
+        .timestamp {
+            color: #8b98b6;
+            font-size: 0.95em;
+            margin-top: 0.7em;
+        }
+        .zap-link {
+            margin-top: 1em;
+            display: inline-block;
+        }
+        .scan-info {
+            background: #f0f4f9;
+            border-radius: 8px;
+            padding: 1em 1.5em;
+            margin-bottom: 2em;
+            font-size: 0.95em;
+            color: #4a5568;
+            border-left: 4px solid #3273dc;
+        }
+        .scan-info p {
+            margin: 0.5em 0;
+        }
+    </style>
+</head>
+<body>
+<div class="report-container">
+    <h1 class="title">Cybersecurity Scan Report</h1>
+    <div class="scan-info">
+        <p><strong>Target:</strong> {{ url }}</p>
+        <p><strong>Scan ID:</strong> {{ scan_id }}</p>
+        <p><strong>Timestamp:</strong> {{ timestamp }}</p>
+    </div>
+    <div class="scan-section">
+        <h2 class="subtitle">SSL/TLS Checker
+            <span class="status-badge status-{{ 'success' if ssl.status == 'success' else 'error' }}">{{ ssl.status|capitalize }}</span>
+        </h2>
+        {% if ssl.status == 'success' %}
+            <ul class="info-list">
+                <li><b>Certificate Valid:</b> {{ 'Yes' if ssl.details.valid else 'No' }}</li>
+                {% if ssl.details.days_remaining is defined %}<li><b>Days Remaining:</b> {{ ssl.details.days_remaining }} days</li>{% endif %}
+                {% if ssl.details.issuer %}<li><b>Issuer:</b> {{ ssl.details.issuer }}</li>{% endif %}
+                {% if ssl.details.subject %}<li><b>Subject:</b> {{ ssl.details.subject }}</li>{% endif %}
+                {% if ssl.details.valid_from %}<li><b>Valid From:</b> {{ ssl.details.valid_from }}</li>{% endif %}
+                {% if ssl.details.valid_until %}<li><b>Valid Until:</b> {{ ssl.details.valid_until }}</li>{% endif %}
+                {% if ssl.details.version is defined %}<li><b>Version:</b> {{ ssl.details.version }}</li>{% endif %}
+            </ul>
+        {% else %}
+            <p class="error">{{ ssl.details.message }}</p>
+        {% endif %}
+        <div class="timestamp">Timestamp: {{ ssl.timestamp }}</div>
+    </div>
+    <div class="scan-section">
+        <h2 class="subtitle">Nmap Port Scanner
+            <span class="status-badge status-{{ 'success' if ports.status == 'success' else 'error' }}">{{ ports.status|capitalize }}</span>
+        </h2>
+        {% if ports.status == 'success' %}
+            <ul class="info-list">
+                <li><b>Total Open Ports:</b> {{ ports.details.total_open_ports }}</li>
+                <li><b>Risky Ports:</b> {{ 'Yes' if ports.details.has_risky_ports else 'No' }}</li>
+            </ul>
+            <table class="result-table">
+                <thead>
+                    <tr><th>Port</th><th>Protocol</th><th>State</th><th>Service</th></tr>
+                </thead>
+                <tbody>
+                {% for port in ports.details.open_ports %}
+                    <tr>
+                        <td>{{ port.port }}</td>
+                        <td>{{ port.protocol }}</td>
+                        <td>{{ port.state }}</td>
+                        <td>{{ port.service }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="error">{{ ports.details.message }}</p>
+        {% endif %}
+        <div class="timestamp">Timestamp: {{ ports.timestamp }}</div>
+    </div>
+    <div class="scan-section">
+        <h2 class="subtitle">Dark Web Exposure Checker
+            <span class="status-badge status-{{ 'success' if darkweb.status == 'success' else 'error' }}">{{ darkweb.status|capitalize }}</span>
+        </h2>
+        {% if darkweb.status == 'success' %}
+            <ul class="info-list">
+                <li><b>Domain Checked:</b> {{ darkweb.details.domain_checked }}</li>
+                <li><b>Total Breaches:</b> {{ darkweb.details.total_breaches }}</li>
+                <li><b>Exposed Records:</b> {{ darkweb.details.exposed_records }}</li>
+            </ul>
+            {% if darkweb.details.breaches and darkweb.details.breaches|length > 0 %}
+                <h4 class="is-size-6">Breaches:</h4>
+                <ul class="info-list">
+                {% for breach in darkweb.details.breaches %}
+                    <li>{{ breach }}</li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p class="success">No breaches found.</p>
+            {% endif %}
+        {% else %}
+            <p class="error">{{ darkweb.details.message }}</p>
+        {% endif %}
+        <div class="timestamp">Timestamp: {{ darkweb.timestamp }}</div>
+    </div>
+    <div class="scan-section">
+        <h2 class="subtitle">ZAP Deep Scan</h2>
+        <a class="button is-link zap-link" href="/zap_report/{{ scan_type|default('manual') }}/{{ scan_id }}/{{ timestamp }}" target="_blank">View ZAP HTML Report</a>
+    </div>
+</div>
+</body>
+</html>

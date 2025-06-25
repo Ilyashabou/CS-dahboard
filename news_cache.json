@@ -1,0 +1,83 @@
+[
+  {
+    "title": "The Mystery of iPhone Crashes That Apple Denies Are Linked to Chinese Hacking",
+    "description": "Plus: A 22-year-old former intern gets put in charge of a key anti-terrorism program, threat intelligence firms finally wrangle their confusing names for hacker groups, and more.",
+    "url": "https://www.wired.com/story/mystery-of-iphone-crashes-that-apple-denies-are-linked-to-chinese-hacking/",
+    "image_url": "https://images.unsplash.com/photo-1563013544-824ae1b704d3",
+    "source": "Security Latest",
+    "category": "attack",
+    "published_at": "2025-06-07T10:30:00"
+  },
+  {
+    "title": "Cybercriminals Are Hiding Malicious Web Traffic in Plain Sight",
+    "description": "In an effort to evade detection, cybercriminals are increasingly turning to \u201cresidential proxy\u201d services that cover their tracks by making it look like everyday online activity.",
+    "url": "https://www.wired.com/story/cybercriminals-are-hiding-malicious-web-traffic-in-plain-sight/",
+    "image_url": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31",
+    "source": "Security Latest",
+    "category": "security",
+    "published_at": "2025-06-06T19:05:57"
+  },
+  {
+    "title": "Ross Ulbricht Got a $31 Million Donation From a Dark Web Dealer, Crypto Tracers Suspect",
+    "description": "Crypto-tracing firm Chainalysis says the mysterious 300-bitcoin donation to the pardoned Silk Road creator appears to have come from someone associated with a different defunct black market: AlphaBay.",
+    "url": "https://www.wired.com/story/ross-ulbricht-31-million-donation-alphabay/",
+    "image_url": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31",
+    "source": "Security Latest",
+    "category": "security",
+    "published_at": "2025-06-05T18:50:16"
+  },
+  {
+    "title": "New Supply Chain Malware Operation Hits npm and PyPI Ecosystems, Targeting Millions Globally",
+    "description": "Cybersecurity researchers have flagged a supply chain attack targeting over a dozen packages associated with GlueStack to deliver malware.\nThe malware, introduced via a change to \"lib/commonjs/index.j...",
+    "url": "https://thehackernews.com/2025/06/new-supply-chain-malware-operation-hits.html",
+    "image_url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjaxh27Ayyokt88UuoUXGlFAfhJqwlNGGCbNH6GexccG2hf_Cc6A9F8Sujl9T3ad7QqRId6ZIv3gnfVE0YWghhw6TOX5URSEkzA-vebPSBvzrPO11jvQUV6sUVKK7klqJnsuXlQVkf38TJQgaDjI87iVxKYSkz89fVZOiEBnIbhrvP4IrPiWQNcHYhv4CLN/s1600/code.jpg",
+    "source": "The Hacker News",
+    "category": "attack",
+    "published_at": "2025-06-08T13:47:00"
+  },
+  {
+    "title": "Malicious Browser Extensions Infect Over 700 Users Across Latin America Since Early 2025",
+    "description": "Cybersecurity researchers have shed light on a new campaign targeting Brazilian users since the start of 2025 to infect users with a malicious extension for Chromium-based web browsers and siphon user...",
+    "url": "https://thehackernews.com/2025/06/malicious-browser-extensions-infect-722.html",
+    "image_url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhUAQHGfPwsMGi_VlhnfYhfS44xBQLg8SRFOHPc6hkuog7awdUP7oXpgRsbN8Wvlr10p6VEiVOH2HgQgvqJnjFGIkTSggI0cvGu8IzuOB1O6eWfzJHSCnuXtWVK7OjmWN56ATj3oweBnFzoyRSrqp7vaoR-OGCoTspfShKxe6FDa2CgLWG4P3h8rHipe7QQ/s1600/chain-1.jpg",
+    "source": "The Hacker News",
+    "category": "attack",
+    "published_at": "2025-06-08T08:01:00"
+  },
+  {
+    "title": "New Atomic macOS Stealer Campaign Exploits ClickFix to Target Apple Users",
+    "description": "Cybersecurity researchers are alerting to a new malware campaign that employs the ClickFix social engineering tactic to trick users into downloading an information stealer malware known as Atomic macO...",
+    "url": "https://thehackernews.com/2025/06/new-atomic-macos-stealer-campaign.html",
+    "image_url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhJ01cK7pntQzfOL2eyvMCkAn1Hjlv9MRtrCeRAlcLNFjqxEtvZRKHTGD3gEe-KL7sol52e4zpyAnYLASiCAOT29l0wwwVdRaZLpspIHWLbV_31hCEPaKNlgxn7Q1yW5eeWmXlCLyKbzSbsQVBEM33Ii5YYZZMx0UtgsHI4IxjyE05nnsAm1yCCL2zxxck/s1600/apple.jpg",
+    "source": "The Hacker News",
+    "category": "vulnerability",
+    "published_at": "2025-06-06T16:25:00"
+  },
+  {
+    "title": "Proxy Services Feast on Ukraine\u2019s IP Address Exodus",
+    "description": "Ukraine has seen nearly one-fifth of its Internet space come under Russian control or sold to Internet address brokers since February 2022, a new study finds. The analysis indicates large chunks of Uk...",
+    "url": "https://krebsonsecurity.com/2025/06/proxy-services-feast-on-ukraines-ip-address-exodus/",
+    "image_url": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31",
+    "source": "Krebs on Security",
+    "category": "security",
+    "published_at": "2025-06-05T22:44:33"
+  },
+  {
+    "title": "U.S. Sanctions Cloud Provider \u2018Funnull\u2019 as Top Source of \u2018Pig Butchering\u2019 Scams",
+    "description": "The U.S. government today imposed economic sanctions on Funnull Technology Inc., a Philippines-based company that provides computer infrastructure for hundreds of thousands of websites involved in vir...",
+    "url": "https://krebsonsecurity.com/2025/05/u-s-sanctions-cloud-provider-funnull-as-top-source-of-pig-butchering-scams/",
+    "image_url": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31",
+    "source": "Krebs on Security",
+    "category": "security",
+    "published_at": "2025-05-30T01:55:16"
+  },
+  {
+    "title": "Pakistan Arrests 21 in \u2018Heartsender\u2019 Malware Service",
+    "description": "Authorities in Pakistan have arrested 21 individuals accused of operating \"Heartsender,\" a once popular spam and malware dissemination service that operated for more than a decade. The main clientele ...",
+    "url": "https://krebsonsecurity.com/2025/05/pakistan-arrests-21-in-heartsender-malware-service/",
+    "image_url": "https://images.unsplash.com/photo-1563013544-824ae1b704d3",
+    "source": "Krebs on Security",
+    "category": "attack",
+    "published_at": "2025-05-28T17:41:47"
+  }
+]

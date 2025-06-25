@@ -1,0 +1,33 @@
+2025-06-10 14:56:11,890 - cve_news_service - INFO - Starting daily CVE processing
+2025-06-10 14:56:11,890 - cve_news_service - INFO - Fetching CVEs from 2025-06-09T00:00:00.000 to 2025-06-10T23:59:59.999
+2025-06-10 14:56:14,358 - cve_news_service - ERROR - API error: 404 - 
+2025-06-10 14:56:14,363 - cve_news_service - WARNING - No vulnerabilities found
+2025-06-10 14:56:16,029 - cve_news_service - INFO - Message sent to Telegram successfully
+2025-06-10 15:00:56,870 - cve_news_service - INFO - Fetching CVEs from 2025-05-11T00:00:00.000 to 2025-06-10T23:59:59.999
+2025-06-10 15:00:59,397 - cve_news_service - ERROR - API error: 404 - 
+2025-06-10 15:08:07,480 - cve_news_service - INFO - Starting daily CVE processing
+2025-06-10 15:08:07,484 - cve_news_service - INFO - Fetching CVEs from 2025-05-11T00:00:00.000 to 2025-06-10T23:59:59.999
+2025-06-10 15:08:09,308 - cve_news_service - ERROR - API error: 404 - 
+2025-06-10 15:08:09,359 - cve_news_service - WARNING - No vulnerabilities found
+2025-06-10 15:08:11,489 - cve_news_service - INFO - Message sent to Telegram successfully
+2025-06-10 15:09:14,056 - cve_news_service - INFO - Starting daily CVE processing
+2025-06-10 15:09:14,067 - cve_news_service - INFO - Fetching CVEs from 2025-05-11T00:00:00.000 to 2025-06-10T23:59:59.999
+2025-06-10 15:09:14,070 - cve_news_service - INFO - Request URL: https://services.nvd.nist.gov/rest/json/cves/2.0
+2025-06-10 15:09:14,076 - cve_news_service - INFO - Request params: {'pubStartDate': '2025-05-11T00:00:00.000', 'pubEndDate': '2025-06-10T23:59:59.999', 'resultsPerPage': 20, 'sortOrder': 'desc'}
+2025-06-10 15:09:14,079 - cve_news_service - INFO - Request headers: {'apiKey': 'bf61d2f7-cd6b-42ee-9732-7d75012faff3'}
+2025-06-10 15:09:16,526 - cve_news_service - INFO - Response status code: 404
+2025-06-10 15:09:16,527 - cve_news_service - INFO - Response URL: https://services.nvd.nist.gov/rest/json/cves/2.0?pubStartDate=2025-05-11T00%3A00%3A00.000&pubEndDate=2025-06-10T23%3A59%3A59.999&resultsPerPage=20&sortOrder=desc
+2025-06-10 15:09:16,530 - cve_news_service - ERROR - API error: 404 - 
+2025-06-10 15:09:16,533 - cve_news_service - WARNING - No vulnerabilities found
+2025-06-10 15:09:18,233 - cve_news_service - INFO - Message sent to Telegram successfully
+2025-06-10 15:15:04,230 - cve_news_service - INFO - Starting daily CVE processing
+2025-06-10 15:15:04,233 - cve_news_service - INFO - Fetching CVEs from 2025-05-11T00:00:00.000 to 2025-06-10T23:59:59.999
+2025-06-10 15:15:04,234 - cve_news_service - INFO - Request URL: https://services.nvd.nist.gov/rest/json/cves/2.0
+2025-06-10 15:15:04,235 - cve_news_service - INFO - Request params: {'pubStartDate': '2025-05-11T00:00:00.000', 'pubEndDate': '2025-06-10T23:59:59.999', 'resultsPerPage': 20}
+2025-06-10 15:15:04,237 - cve_news_service - INFO - Request headers: {'apiKey': 'bf61d2f7-cd6b-42ee-9732-7d75012faff3'}
+2025-06-10 15:15:06,990 - cve_news_service - INFO - Response status code: 200
+2025-06-10 15:15:06,991 - cve_news_service - INFO - Response URL: https://services.nvd.nist.gov/rest/json/cves/2.0?pubStartDate=2025-05-11T00%3A00%3A00.000&pubEndDate=2025-06-10T23%3A59%3A59.999&resultsPerPage=20
+2025-06-10 15:15:07,001 - cve_news_service - INFO - Attempt 1/3 - Sending request to: https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent
+2025-06-10 15:15:14,173 - cve_news_service - INFO - Response status: 200
+2025-06-10 15:15:15,607 - cve_news_service - INFO - Message sent to Telegram successfully
+2025-06-10 15:15:15,616 - cve_news_service - INFO - Processed 20 CVEs

@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cybersecurity Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #4cc9f0;
+            --success-color: #2dc653;
+            --warning-color: #ff9f1c;
+            --danger-color: #e71d36;
+            --dark-color: #1a1b25;
+            --light-color: #f8f9fa;
+            --gray-color: #6c757d;
+            --border-radius: 12px;
+            --box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --sidebar-width: 300px;
+            --sidebar-margin: 15px;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            min-height: 100vh;
+            color: var(--dark-color);
+        }
+        
+        .card {
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .button {
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .button.is-primary {
+            background-color: var(--primary-color);
+        }
+        
+        .button.is-primary:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .button.is-danger {
+            background-color: var(--danger-color);
+        }
+        
+        .button.is-info {
+            background-color: var(--accent-color);
+        }
+        
+        .button.is-success {
+            background-color: var(--success-color);
+        }
+        
+        .button.is-link {
+            background-color: var(--secondary-color);
+        }
+        
+        .input, .select select {
+            border-radius: 8px;
+            box-shadow: none;
+            border: 1px solid #e0e0e0;
+            padding: 0.75rem 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .input:focus, .select select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.25);
+        }
+        
+        .title {
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        
+        .subtitle {
+            font-weight: 500;
+            color: var(--gray-color);
+        }
+        
+        .box {
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        #progress-area {
+            margin-top: 2rem;
+        }
+        
+        #zap-output {
+            background: var(--dark-color);
+            color: #4ade80;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9em;
+            padding: 1.25em;
+            height: 200px;
+            overflow-y: scroll;
+            border-radius: 8px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        #report-area {
+            margin-top: 2rem;
+        }
+        
+        #progress-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        #progress-list li {
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+        }
+        
+        #progress-list li::before {
+            content: '\f058';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        
+        .modal-card {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+        
+        .modal-card-head {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .modal-card-title {
+            color: white;
+            font-weight: 600;
+        }
+        
+        .checkbox {
+            margin-right: 1rem;
+        }
+        
+        /* Responsive styles */
+        @media screen and (max-width: 1200px) {
+            :root {
+                --sidebar-width: 280px;
+                --sidebar-margin: 10px;
+            }
+            
+            #sidebar-history, #sidebar-schedule {
+                width: var(--sidebar-width);
+            }
+            
+            .section {
+                padding: 1rem 0.75rem;
+            }
+            
+            .container {
+                max-width: 600px !important;
+            }
+        }
+        
+        @media screen and (max-width: 1024px) {
+            :root {
+                --sidebar-width: 250px;
+                --sidebar-margin: 8px;
+            }
+            
+            #sidebar-history, #sidebar-schedule {
+                width: var(--sidebar-width);
+            }
+            
+            .container {
+                max-width: 550px !important;
+            }
+        }
+        
+        @media screen and (max-width: 900px) {
+            :root {
+                --sidebar-width: 220px;
+                --sidebar-margin: 5px;
+            }
+            
+            #sidebar-history, #sidebar-schedule {
+                width: var(--sidebar-width);
+            }
+            
+            .container {
+                max-width: 450px !important;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            :root {
+                --sidebar-width: 100%;
+                --sidebar-margin: 0;
+            }
+            
+            #sidebar-history, #sidebar-schedule {
+                position: static !important;
+                width: 100%;
+                margin: 1rem auto;
+                max-width: 90%;
+            }
+            
+            .section {
+                padding: 1rem 0.5rem;
+            }
+            
+            .container {
+                max-width: 95% !important;
+                margin: 0 auto;
+            }
+            
+            .card-content {
+                padding: 1.5rem !important;
+            }
+            
+            .title {
+                font-size: 1.8rem !important;
+            }
+            
+            .button.is-medium {
+                padding: 0.75rem 1.5rem !important;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .card-content {
+                padding: 1.25rem !important;
+            }
+            
+            .title {
+                font-size: 1.5rem !important;
+            }
+            
+            #progress-area, #report-area {
+                padding: 1rem !important;
+            }
+            
+            #scan-html-link {
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            
+            #scan-html-link .button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Add this right after the <body> tag, before any other content -->
+<div id="sidebar-history" style="position:fixed;right:var(--sidebar-margin);top:20px;width:var(--sidebar-width);z-index:900;">
+  <button id="open-cve-schedule-modal" class="button is-link" style="width:100%;margin-bottom:1em;padding: 1em; border-radius: 10px; font-weight: 600; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center;"><i class="fas fa-newspaper" style="margin-right: 8px;"></i>Configure CVE News Updates</button>
+  <div class="box" style="margin-top: 0.5em; width: 100%; border-radius: var(--border-radius); box-shadow: var(--box-shadow); background: rgba(255, 255, 255, 0.95);">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25em;">
+      <h2 class="title is-5" style="margin-bottom:0; color: var(--secondary-color);"><i class="fas fa-history" style="margin-right: 8px;"></i>Manual Scan History</h2>
+      <button id="delete-all-scans" class="button is-small is-danger" style="border-radius: 6px;"><i class="fas fa-trash-alt" style="margin-right: 5px;"></i>Delete All</button>
+    </div>
+    <ul id="manual-scans-list" style="padding-left:0; max-height: 70vh; overflow-y: auto;"></ul>
+  </div>
+</div>
+
+<div id="sidebar-schedule" style="position:fixed;left:var(--sidebar-margin);top:20px;width:var(--sidebar-width);z-index:900;">
+  <button id="open-schedule-modal" class="button is-link" style="width:100%;margin-bottom:1em;padding: 1em; border-radius: 10px; font-weight: 600; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center;"><i class="fas fa-calendar-plus" style="margin-right: 8px;"></i>ADD a Schedule Scan</button>
+  <div class="box" style="margin-top: 0.5em; width: 100%; border-radius: var(--border-radius); box-shadow: var(--box-shadow); background: rgba(255, 255, 255, 0.95);">
+      <h2 class="title is-5" style="margin-bottom: 1.25em; color: var(--secondary-color);"><i class="fas fa-calendar-alt" style="margin-right: 8px;"></i>Scheduled Scans</h2>
+      <ul id="scheduled-scans-list" style="padding-left:0; max-height: 70vh; overflow-y: auto;"></ul>
+    </div>
+</div>
+
+<div class="modal" id="schedule-modal">
+  <div class="modal-background"></div>
+  <div class="modal-card" style="border-radius: var(--border-radius); overflow: hidden; max-width: 550px;">
+    <header class="modal-card-head" style="background: var(--primary-color); border: none;">
+      <p class="modal-card-title" style="color: white; font-weight: 600;"><i class="fas fa-calendar-plus" style="margin-right: 10px;"></i>Schedule a New Scan</p>
+      <button class="delete" aria-label="close" id="close-schedule-modal" style="background: rgba(255,255,255,0.3);"></button>
+    </header>
+    <section class="modal-card-body" style="padding: 1.5rem;">
+      <form id="schedule-form">
+  <div class="field">
+    <label class="label" style="font-weight: 600; color: var(--dark-color); margin-bottom: 0.5rem;"><i class="fas fa-globe" style="margin-right: 8px; color: var(--primary-color);"></i>Target URL</label>
+    <div class="control has-icons-left">
+      <input class="input" type="url" id="schedule-url" placeholder="https://example.com" required style="padding-left: 2.5rem; height: 2.75rem; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+      <span class="icon is-small is-left" style="font-size: 1rem;">
+        <i class="fas fa-link" style="color: var(--primary-color);"></i>
+      </span>
+    </div>
+  </div>
+  <div class="field" style="margin-top: 1.5rem;">
+    <label class="label" style="font-weight: 600; color: var(--dark-color); margin-bottom: 0.5rem;"><i class="fas fa-clock" style="margin-right: 8px; color: var(--primary-color);"></i>Schedule</label>
+    <div class="control has-icons-left">
+      <div class="select is-fullwidth">
+        <select id="schedule-type" required style="padding-left: 2.5rem; height: 2.75rem; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="monthly">Monthly</option>
+          <option value="custom">Specific Time</option>
+        </select>
+      </div>
+      <span class="icon is-small is-left" style="font-size: 1rem;">
+        <i class="fas fa-calendar" style="color: var(--primary-color);"></i>
+      </span>
+    </div>
+  </div>
+  <div class="field" id="daily-time-field" style="display:none; margin-top: 1.5rem; background: rgba(67, 97, 238, 0.05); padding: 1rem; border-radius: 10px;">
+    <label class="label" style="font-weight: 600; color: var(--dark-color); margin-bottom: 0.5rem;"><i class="fas fa-clock" style="margin-right: 8px; color: var(--primary-color);"></i>Time</label>
+    <div class="control has-icons-left">
+      <input class="input" type="time" id="daily-time" style="padding-left: 2.5rem; height: 2.75rem; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+      <span class="icon is-small is-left" style="font-size: 1rem;">
+        <i class="fas fa-hourglass" style="color: var(--primary-color);"></i>
+      </span>
+    </div>
+  </div>
+  <div class="field" id="weekly-field" style="display:none; margin-top: 1.5rem; background: rgba(67, 97, 238, 0.05); padding: 1rem; border-radius: 10px;">
+    <label class="label" style="font-weight: 600; color: var(--dark-color); margin-bottom: 0.5rem;"><i class="fas fa-calendar-week" style="margin-right: 8px; color: var(--primary-color);"></i>Days of Week</label>
+    <div class="control" style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+      <label class="checkbox" style="background: white; padding: 0.5rem 0.75rem; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; align-items: center;">
+        <input type="checkbox" class="weekly-day" value="Mon" style="margin-right: 0.5rem;"> Mon
+      </label>
+      <label class="checkbox" style="background: white; padding: 0.5rem 0.75rem; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; align-items: center;">
+        <input type="checkbox" class="weekly-day" value="Tue" style="margin-right: 0.5rem;"> Tue
+      </label>
+      <label class="checkbox" style="background: white; padding: 0.5rem 0.75rem; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; align-items: center;">
+        <input type="checkbox" class="weekly-day" value="Wed" style="margin-right: 0.5rem;"> Wed
+      </label>
+      <label class="checkbox" style="background: white; padding: 0.5rem 0.75rem; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; align-items: center;">
+        <input type="checkbox" class="weekly-day" value="Thu" style="margin-right: 0.5rem;"> Thu
+      </label>
+      <label class="checkbox" style="background: white; padding: 0.5rem 0.75rem; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; align-items: center;">
+        <input type="checkbox" class="weekly-day" value="Fri" style="margin-right: 0.5rem;"> Fri
+      </label>
+      <label class="checkbox" style="background: white; padding: 0.5rem 0.75rem; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; align-items: center;">
+        <input type="checkbox" class="weekly-day" value="Sat" style="margin-right: 0.5rem;"> Sat
+      </label>
+      <label class="checkbox" style="background: white; padding: 0.5rem 0.75rem; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; align-items: center;">
+        <input type="checkbox" class="weekly-day" value="Sun" style="margin-right: 0.5rem;"> Sun
+      </label>
+    </div>
+    <div class="field" style="margin-top:1rem;">
+      <label class="label" style="font-weight: 600; color: var(--dark-color); margin-bottom: 0.5rem;"><i class="fas fa-clock" style="margin-right: 8px; color: var(--primary-color);"></i>Time</label>
+      <div class="control has-icons-left">
+        <input class="input" type="time" id="weekly-time" style="padding-left: 2.5rem; height: 2.75rem; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+        <span class="icon is-small is-left" style="font-size: 1rem;">
+          <i class="fas fa-hourglass" style="color: var(--primary-color);"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="field" id="monthly-field" style="display:none; margin-top: 1.5rem; background: rgba(67, 97, 238, 0.05); padding: 1rem; border-radius: 10px;">
+    <label class="label" style="font-weight: 600; color: var(--dark-color); margin-bottom: 0.5rem;"><i class="fas fa-calendar-alt" style="margin-right: 8px; color: var(--primary-color);"></i>Days of Month</label>
+    <div class="control">
+      <select id="monthly-days" class="input" multiple size="5" style="width:100%; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+        <!-- 1-31 options will be inserted by JS -->
+      </select>
+    </div>
+    <div class="field" style="margin-top:1rem;">
+      <label class="label" style="font-weight: 600; color: var(--dark-color); margin-bottom: 0.5rem;"><i class="fas fa-clock" style="margin-right: 8px; color: var(--primary-color);"></i>Time</label>
+      <div class="control has-icons-left">
+        <input class="input" type="time" id="monthly-time" style="padding-left: 2.5rem; height: 2.75rem; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+        <span class="icon is-small is-left" style="font-size: 1rem;">
+          <i class="fas fa-hourglass" style="color: var(--primary-color);"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="field" id="custom-time-field" style="display:none; margin-top: 1.5rem; background: rgba(67, 97, 238, 0.05); padding: 1rem; border-radius: 10px;">
+    <label class="label" style="font-weight: 600; color: var(--dark-color); margin-bottom: 0.5rem;"><i class="fas fa-calendar-day" style="margin-right: 8px; color: var(--primary-color);"></i>Custom Time (YYYY-MM-DD HH:MM)</label>
+    <div class="control has-icons-left">
+      <input class="input" type="datetime-local" id="custom-time" style="padding-left: 2.5rem; height: 2.75rem; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+      <span class="icon is-small is-left" style="font-size: 1rem;">
+        <i class="fas fa-calendar-check" style="color: var(--primary-color);"></i>
+      </span>
+    </div>
+  </div>
+  <div class="field" style="margin-top: 2rem; text-align: center;">
+    <button class="button is-link" type="submit" style="padding: 0.75rem 2rem; font-weight: 600; min-width: 180px;"><i class="fas fa-plus-circle" style="margin-right: 8px;"></i>Add Schedule</button>
+  </div>
+</form>
+    </section>
+  </div>
+</div>
+
+<section class="section" style="background:linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%); min-height:100vh; padding: 1.5rem 1rem;">
+    <div class="container" style="max-width: 650px; margin: 1em auto;">
+        <div class="card" style="border-radius: 18px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); border: 1px solid rgba(67, 97, 238, 0.1); overflow: hidden;">
+            <div class="card-content" style="padding: 2.5rem;">
+                
+                <h1 class="title has-text-centered" style="color:var(--dark-color); font-size: 2.2rem; font-weight: 700; margin-bottom: 2rem; letter-spacing: -0.5px;">
+                    <i class="fas fa-shield-alt" style="color: var(--primary-color); margin-right: 12px;"></i>
+                    Cybersecurity Dashboard
+                </h1>
+                <form id="scan-form" style="margin-bottom:2.5em;">
+                    <div class="field">
+                        <label class="label" style="font-weight: 600; color: var(--dark-color); margin-bottom: 0.75rem; font-size: 1.1rem;">
+                            <i class="fas fa-globe" style="color: var(--primary-color); margin-right: 8px;"></i>
+                            Target URL
+                        </label>
+                        <div class="control has-icons-left">
+                            <input class="input" type="url" id="url" placeholder="https://example.com" required style="height: 3.25rem; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); padding-left: 3rem; font-size: 1.1rem;">
+                            <span class="icon is-medium is-left" style="height: 3.25rem; width: 3.25rem;">
+                                <i class="fas fa-link" style="color: var(--primary-color); font-size: 1.2rem;"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="control has-text-centered" style="margin-top:2em;">
+                        <button class="button is-primary is-medium" type="submit" style="padding: 1.25rem 3rem; font-weight: 600; border-radius: 10px; box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3); transition: all 0.3s ease; font-size: 1.1rem;">
+                            <i class="fas fa-search-plus" style="margin-right: 10px;"></i>
+                            Start Scan
+                        </button>
+                    </div>
+                </form>
+                <div id="progress-area" style="display:none; margin-bottom:2.5em; background: rgba(67, 97, 238, 0.05); padding: 1.5rem; border-radius: 12px;">
+                    <h2 id="progress-title" class="subtitle" style="color: var(--dark-color); font-weight: 600; margin-bottom: 1rem; display: flex; align-items: center;">
+                        <i class="fas fa-spinner fa-pulse" style="color: var(--primary-color); margin-right: 10px;"></i>
+                        Progress
+                    </h2>
+                    <textarea id="progress-output" class="textarea" rows="8" readonly style="display:none; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; background-color: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.2); border: none;"></textarea>
+                    <ul id="progress-list" style="padding-left: 0; margin-top: 1rem;"></ul>
+                </div>
+                <div id="report-area" style="display:none; background: rgba(72, 187, 120, 0.05); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #48bb78;">
+                    <h2 id="report-title" class="subtitle" style="color: var(--dark-color); font-weight: 600; margin-bottom: 1rem; display: flex; align-items: center;">
+                        <i class="fas fa-clipboard-check" style="color: #48bb78; margin-right: 10px;"></i>
+                        Scan Report
+                    </h2>
+                    <pre id="report-json" style="background: #f8fafc; padding: 1rem; border-radius: 8px; max-height: 300px; overflow-y: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;"></pre>
+                    <div id="scan-html-link" style="margin-top:1.5em; text-align: center;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        <div id="progress-area" style="display:none;">
+            <h2 id="progress-title" class="subtitle">Progress</h2>
+            <textarea id="progress-output" class="textarea has-background-dark has-text-white" rows="8" readonly style="display:none;"></textarea>
+            <ul id="progress-list"></ul>
+        </div>
+        <div id="report-area" style="display:none;">
+            <h2 id="report-title" class="subtitle">Scan Report</h2>
+            <pre id="report-json"></pre>
+            <div id="scan-html-link" style="margin-top:1em;"></div>
+        </div>
+    </div>
+</section>
+<script>
+    const socket = io();
+    const form = document.getElementById('scan-form');
+    const urlInput = document.getElementById('url');
+    const progressList = document.getElementById('progress-list');
+    const progressOutput = document.getElementById('progress-output');
+    const reportJson = document.getElementById('report-json');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Show progress area, hide report area
+        document.getElementById('progress-area').style.display = 'block';
+        document.getElementById('report-area').style.display = 'none';
+        progressList.innerHTML = '';
+        progressOutput.value = '';
+        progressOutput.style.display = 'none';
+        reportJson.textContent = '';
+        document.getElementById('scan-html-link').innerHTML = '';
+        socket.emit('start_scan', { url: urlInput.value });
+    });
+
+    socket.on('progress', function(data) {
+        document.getElementById('progress-area').style.display = 'block';
+        const li = document.createElement('li');
+        li.style.padding = '0.75rem 1rem';
+        li.style.marginBottom = '0.75rem';
+        li.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+        li.style.borderRadius = '8px';
+        li.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.05)';
+        li.style.display = 'flex';
+        li.style.alignItems = 'center';
+        li.style.fontWeight = '500';
+        
+        // Add appropriate icon based on status
+        let iconClass = 'fa-circle-notch fa-spin';
+        let iconColor = 'var(--primary-color)';
+        
+        if (data.status === 'done') {
+            iconClass = 'fa-check-circle';
+            iconColor = 'var(--success-color)';
+        } else if (data.status === 'error') {
+            iconClass = 'fa-exclamation-circle';
+            iconColor = 'var(--danger-color)';
+        }
+        
+        li.innerHTML = `<i class="fas ${iconClass}" style="margin-right: 10px; color: ${iconColor};"></i> <span style="flex: 1;">${data.step} - <span style="font-weight: ${data.status === 'done' ? '600' : '400'}; color: ${data.status === 'done' ? 'var(--success-color)' : data.status === 'error' ? 'var(--danger-color)' : 'inherit'};">${data.status}</span></span>`;
+        
+        progressList.appendChild(li);
+        if (data.step === 'ZAP Deep Scan' && data.status === 'running') {
+            // Show ZAP output
+            progressOutput.style.display = 'block';
+            progressOutput.value = '';
+        }
+        if (data.status === 'done' && data.step === 'ZAP Deep Scan') {
+            // Hide ZAP output after scan
+            setTimeout(function() {
+                progressOutput.style.display = 'none';
+            }, 1000);
+        }
+    });
+
+    socket.on('zap_output', function(msg) {
+        if (progressOutput.style.display !== 'block') {
+            progressOutput.style.display = 'block';
+        }
+        progressOutput.value += msg.line;
+        progressOutput.scrollTop = progressOutput.scrollHeight;
+    });
+
+    socket.on('complete', function(results) {
+        // Show both progress and report area after scan completion
+        document.getElementById('progress-area').style.display = 'block';
+        document.getElementById('report-area').style.display = 'block';
+        // Hide JSON output after scan completion
+        reportJson.style.display = 'none';
+        // Show Full Scan HTML report link
+        if (results.scan_report_url) {
+            document.getElementById('scan-html-link').innerHTML = `
+                <a class="button is-primary" href="${results.scan_report_url}" target="_blank" 
+                   style="padding: 0.75rem 1.5rem; font-weight: 600; border-radius: 8px; box-shadow: 0 4px 15px rgba(67, 97, 238, 0.2); transition: all 0.3s ease; margin-right: 0.75rem;">
+                   <i class="fas fa-file-alt" style="margin-right: 8px;"></i>View Full Scan Report
+                </a>
+                ${results.zap_report_url ? `
+                <a class="button is-info" href="${results.zap_report_url}" target="_blank" 
+                   style="padding: 0.75rem 1.5rem; font-weight: 600; border-radius: 8px; box-shadow: 0 4px 15px rgba(32, 156, 238, 0.2); transition: all 0.3s ease;">
+                   <i class="fas fa-bug" style="margin-right: 8px;"></i>View ZAP Report
+                </a>` : ''}
+            `;
+        }
+    });
+// --- Schedule Modal Logic ---
+const openScheduleBtn = document.getElementById('open-schedule-modal');
+const closeScheduleBtn = document.getElementById('close-schedule-modal');
+const scheduleModal = document.getElementById('schedule-modal');
+const scheduleForm = document.getElementById('schedule-form');
+const scheduleType = document.getElementById('schedule-type');
+const customTimeField = document.getElementById('custom-time-field');
+const scheduledScansList = document.getElementById('scheduled-scans-list');
+const dailyTimeField = document.getElementById('daily-time-field');
+const weeklyField = document.getElementById('weekly-field');
+const monthlyField = document.getElementById('monthly-field');
+const monthlyDaysSelect = document.getElementById('monthly-days');
+
+// Populate days 1-31 for monthly
+if (monthlyDaysSelect) {
+  monthlyDaysSelect.innerHTML = '';
+  for (let i = 1; i <= 31; i++) {
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = i;
+    monthlyDaysSelect.appendChild(opt);
+  }
+}
+
+openScheduleBtn.addEventListener('click', function() {
+  scheduleModal.classList.add('is-active');
+});
+closeScheduleBtn.addEventListener('click', function() {
+  scheduleModal.classList.remove('is-active');
+});
+document.querySelector('#schedule-modal .modal-background').addEventListener('click', function() {
+  scheduleModal.classList.remove('is-active');
+});
+
+function showScheduleFields() {
+  dailyTimeField.style.display = 'none';
+  weeklyField.style.display = 'none';
+  monthlyField.style.display = 'none';
+  customTimeField.style.display = 'none';
+  if (scheduleType.value === 'daily') {
+    dailyTimeField.style.display = '';
+  } else if (scheduleType.value === 'weekly') {
+    weeklyField.style.display = '';
+  } else if (scheduleType.value === 'monthly') {
+    monthlyField.style.display = '';
+  } else if (scheduleType.value === 'custom') {
+    customTimeField.style.display = '';
+  }
+}
+scheduleType.addEventListener('change', showScheduleFields);
+showScheduleFields(); // initial
+
+function getScheduleText(scan) {
+  if (scan.type === 'daily') {
+    return `Daily at ${scan.dailyTime}`;
+  }
+  if (scan.type === 'weekly') {
+    return `Weekly on ${scan.weeklyDays.join(', ')} at ${scan.weeklyTime}`;
+  }
+  if (scan.type === 'monthly') {
+    return `Monthly on days ${scan.monthlyDays.join(', ')} at ${scan.monthlyTime}`;
+  }
+  if (scan.type === 'custom' && scan.customTime) {
+    return 'At ' + new Date(scan.customTime).toLocaleString();
+  }
+  return '';
+}
+
+let scheduledScans = [];
+
+async function fetchScheduledScans() {
+  const res = await fetch('/api/scheduled_scans');
+  scheduledScans = await res.json();
+  renderScheduledScans();
+}
+
+function renderScheduledScans() {
+  scheduledScansList.innerHTML = '';
+  if (scheduledScans.length === 0) {
+    scheduledScansList.innerHTML = '<li><em>No scheduled scans yet.</em></li>';
+    return;
+  }
+  scheduledScans.forEach((scan, idx) => {
+    const li = document.createElement('li');
+    li.style.listStyle = 'none';
+    li.style.marginBottom = '0.9em';
+    li.style.padding = '0.95em 0.95em 0.95em 0.95em';
+    li.style.background = '#f7f8fa';
+    li.style.borderRadius = '10px';
+    li.style.display = 'flex';
+    li.style.alignItems = 'center';
+    li.style.justifyContent = 'space-between';
+    li.style.boxShadow = '0 1px 6px rgba(44,62,80,0.08)';
+    li.style.minWidth = '100%';
+    li.style.maxWidth = '100%';
+    
+    const infoDiv = document.createElement('div');
+    infoDiv.style.flex = '1 1 auto';
+    infoDiv.style.overflow = 'hidden';
+    
+    // URL and schedule text
+    const urlDiv = document.createElement('div');
+    urlDiv.style.fontWeight = '600';
+    urlDiv.style.fontSize = '1em';
+    urlDiv.style.whiteSpace = 'nowrap';
+    urlDiv.style.overflow = 'hidden';
+    urlDiv.style.textOverflow = 'ellipsis';
+    urlDiv.style.maxWidth = '100%';
+    urlDiv.style.fontSize = '0.9em';
+    urlDiv.textContent = scan.url;
+    
+    const scheduleDiv = document.createElement('div');
+    scheduleDiv.style.fontSize = '0.93em';
+    scheduleDiv.style.color = '#555';
+    scheduleDiv.style.marginTop = '2px';
+    scheduleDiv.textContent = getScheduleText(scan);
+    
+    infoDiv.appendChild(urlDiv);
+    infoDiv.appendChild(scheduleDiv);
+    
+    // Add View Report button if the scan has been run before
+    if (scan.last_report && scan.last_scan_id && scan.last_timestamp) {
+      const viewReportBtn = document.createElement('button');
+      viewReportBtn.innerHTML = 'View Report';
+      viewReportBtn.className = 'button is-small is-success';
+      viewReportBtn.style.marginTop = '8px';
+      viewReportBtn.style.fontSize = '0.85em';
+      viewReportBtn.title = 'View the latest scan report';
+      viewReportBtn.onclick = function() {
+        window.open(`/scan_report/scheduled/${scan.last_scan_id}/${scan.last_timestamp}`, '_blank');
+      };
+      infoDiv.appendChild(viewReportBtn);
+    }
+    
+    const btnGroup = document.createElement('div');
+    btnGroup.style.display = 'flex';
+    btnGroup.style.flexDirection = 'column';
+    btnGroup.style.alignItems = 'stretch';
+    btnGroup.style.gap = '0.4em';
+    btnGroup.style.minWidth = '60px';
+    btnGroup.style.marginLeft = '5px';
+
+    const editBtn = document.createElement('button');
+    editBtn.innerHTML = 'Edit';
+    editBtn.className = 'button is-small is-info';
+    editBtn.title = 'Edit scan';
+    editBtn.onclick = function() {
+      fillScheduleForm(scan);
+      editScanIndex = scan.id;
+      scheduleModal.classList.add('is-active');
+    };
+    
+    // View Report button moved under the date/time (in infoDiv)
+
+    const delBtn = document.createElement('button');
+    delBtn.innerHTML = 'Delete';
+    delBtn.className = 'button is-small is-danger';
+    delBtn.title = 'Delete scan';
+    delBtn.onclick = async function() {
+      await fetch(`/api/scheduled_scans/${scan.id}`, { method: 'DELETE' });
+      await fetchScheduledScans();
+    };
+    btnGroup.appendChild(editBtn);
+    btnGroup.appendChild(delBtn);
+    li.appendChild(infoDiv);
+    li.appendChild(btnGroup);
+    scheduledScansList.appendChild(li);
+  });
+}
+
+let editScanIndex = null; // null means add mode
+
+scheduleForm.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const url = document.getElementById('schedule-url').value;
+  const type = scheduleType.value;
+  let scan = { url, type };
+  if (type === 'daily') {
+    scan.dailyTime = document.getElementById('daily-time').value;
+  } else if (type === 'weekly') {
+    scan.weeklyDays = Array.from(document.querySelectorAll('.weekly-day:checked')).map(cb => cb.value);
+    scan.weeklyTime = document.getElementById('weekly-time').value;
+  } else if (type === 'monthly') {
+    scan.monthlyDays = Array.from(monthlyDaysSelect.selectedOptions).map(opt => parseInt(opt.value));
+    scan.monthlyTime = document.getElementById('monthly-time').value;
+  } else if (type === 'custom') {
+    scan.customTime = document.getElementById('custom-time').value;
+  }
+  if (editScanIndex !== null) {
+    // Edit mode
+    await fetch(`/api/scheduled_scans/${editScanIndex}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(scan)
+    });
+    editScanIndex = null;
+  } else {
+    // Add mode
+    await fetch('/api/scheduled_scans', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(scan)
+    });
+  }
+  await fetchScheduledScans();
+  scheduleModal.classList.remove('is-active');
+  scheduleForm.reset();
+  showScheduleFields();
+});
+
+function fillScheduleForm(scan) {
+  document.getElementById('schedule-url').value = scan.url || '';
+  scheduleType.value = scan.type;
+  showScheduleFields();
+  if (scan.type === 'daily') {
+    document.getElementById('daily-time').value = scan.dailyTime || '';
+  } else if (scan.type === 'weekly') {
+    document.querySelectorAll('.weekly-day').forEach(cb => {
+      cb.checked = scan.weeklyDays && scan.weeklyDays.includes(cb.value);
+    });
+    document.getElementById('weekly-time').value = scan.weeklyTime || '';
+  } else if (scan.type === 'monthly') {
+    Array.from(monthlyDaysSelect.options).forEach(opt => {
+      opt.selected = scan.monthlyDays && scan.monthlyDays.includes(parseInt(opt.value));
+    });
+    document.getElementById('monthly-time').value = scan.monthlyTime || '';
+  } else if (scan.type === 'custom') {
+    document.getElementById('custom-time').value = scan.customTime || '';
+  }
+}
+
+
+// Render on load
+fetchScheduledScans();
+
+// Auto-refresh scheduled scans list every 5 seconds
+setInterval(fetchScheduledScans, 5000);
+
+// Manual Scan History Management
+const manualScansList = document.getElementById('manual-scans-list');
+const deleteAllButton = document.getElementById('delete-all-scans');
+
+// Function to fetch and display manual scan history
+async function fetchManualScans() {
+  try {
+    const response = await fetch('/api/manual_scans');
+    const scans = await response.json();
+    
+    manualScansList.innerHTML = '';
+    
+    if (scans.length === 0) {
+      const emptyMessage = document.createElement('li');
+      emptyMessage.style.listStyle = 'none';
+      emptyMessage.style.padding = '0.5em';
+      emptyMessage.style.fontStyle = 'italic';
+      emptyMessage.style.color = '#888';
+      emptyMessage.textContent = 'No manual scans found';
+      manualScansList.appendChild(emptyMessage);
+      return;
+    }
+    
+    scans.forEach(scan => {
+      const li = document.createElement('li');
+      li.style.listStyle = 'none';
+      li.style.marginBottom = '0.9em';
+      li.style.padding = '0.95em';
+      li.style.background = '#f7f8fa';
+      li.style.borderRadius = '10px';
+      li.style.display = 'flex';
+      li.style.flexDirection = 'column';
+      li.style.boxShadow = '0 1px 6px rgba(44,62,80,0.08)';
+      
+      // URL and timestamp
+      const urlDiv = document.createElement('div');
+      urlDiv.style.fontWeight = '600';
+      urlDiv.style.fontSize = '1em';
+      urlDiv.style.whiteSpace = 'nowrap';
+      urlDiv.style.overflow = 'hidden';
+      urlDiv.style.textOverflow = 'ellipsis';
+      urlDiv.textContent = scan.url || 'Unknown URL';
+      
+      const timeDiv = document.createElement('div');
+      timeDiv.style.fontSize = '0.85em';
+      timeDiv.style.color = '#555';
+      timeDiv.style.marginTop = '2px';
+      timeDiv.textContent = scan.display_time;
+      
+      // Buttons container
+      const buttonsDiv = document.createElement('div');
+      buttonsDiv.style.display = 'flex';
+      buttonsDiv.style.gap = '0.5em';
+      buttonsDiv.style.marginTop = '0.5em';
+      
+      // View Report button
+      const viewReportBtn = document.createElement('button');
+      viewReportBtn.innerHTML = 'View Report';
+      viewReportBtn.className = 'button is-small is-primary';
+      viewReportBtn.style.flex = '1';
+      viewReportBtn.onclick = function() {
+        window.open(scan.report_url, '_blank');
+      };
+      
+      // View ZAP Report button (if available)
+      if (scan.zap_report_url) {
+        const viewZapBtn = document.createElement('button');
+        viewZapBtn.innerHTML = 'View ZAP';
+        viewZapBtn.className = 'button is-small is-info';
+        viewZapBtn.style.flex = '1';
+        viewZapBtn.onclick = function() {
+          window.open(scan.zap_report_url, '_blank');
+        };
+        buttonsDiv.appendChild(viewZapBtn);
+      }
+      
+      // Delete button
+      const deleteBtn = document.createElement('button');
+      deleteBtn.innerHTML = 'Delete';
+      deleteBtn.className = 'button is-small is-danger';
+      deleteBtn.style.flex = '1';
+      deleteBtn.onclick = async function() {
+        if (confirm('Are you sure you want to delete this scan?')) {
+          await fetch(`/api/manual_scans/${scan.id}/${scan.timestamp}`, { method: 'DELETE' });
+          await fetchManualScans();
+        }
+      };
+      
+      buttonsDiv.appendChild(viewReportBtn);
+      buttonsDiv.appendChild(deleteBtn);
+      
+      li.appendChild(urlDiv);
+      li.appendChild(timeDiv);
+      li.appendChild(buttonsDiv);
+      
+      manualScansList.appendChild(li);
+    });
+  } catch (error) {
+    console.error('Error fetching manual scans:', error);
+  }
+}
+
+// Delete all manual scans
+deleteAllButton.addEventListener('click', async function() {
+  if (confirm('Are you sure you want to delete ALL manual scan history? This cannot be undone.')) {
+    try {
+      await fetch('/api/manual_scans', { method: 'DELETE' });
+      await fetchManualScans();
+    } catch (error) {
+      console.error('Error deleting all scans:', error);
+    }
+  }
+});
+
+// Update manual scan history when a new scan completes
+socket.on('complete', function(results) {
+  // Existing code...
+  
+  // Refresh manual scan history
+  setTimeout(fetchManualScans, 1000);
+});
+
+// Fetch manual scans on page load
+fetchManualScans();
+
+// Auto-refresh manual scans list every 30 seconds
+setInterval(fetchManualScans, 30000);
+</script>
+
+<!-- Include CVE News Component -->
+{% include 'cve_news_component.html' %}
+
+</body>
+</html>

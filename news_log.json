@@ -1,0 +1,422 @@
+[
+  {
+    "timestamp": "2025-06-10 18:53:20",
+    "summary": "**Urgent Security Updates Needed!**\n\nSeveral critical and high-severity vulnerabilities have been identified.  Update your software immediately!\n\n**Section 1: WordPress Vulnerabilities**\n\n* **CVE-2025-4797 (CRITICAL): Golo WordPress Theme - Account Takeover:**  An attacker can easily take over any account (including admin) if they know the email address.  **Update to version 1.7.1 or later immediately.**\n\n* **CVE-2025-4224 (HIGH): wpForo + wpForo Advanced Attachments Plugin - XSS:**  Attackers with custom-level access or higher can inject malicious scripts into your website. **Update to version 3.1.4 or later immediately.**\n\n\n**Section 2: Google Chrome Vulnerabilities**\n\n* **CVE-2025-5068 (HIGH) & CVE-2025-5419 (HIGH): Google Chrome - Memory Corruption:**  These vulnerabilities in Chrome's rendering engine (Blink and V8) could allow attackers to crash your browser or potentially execute malicious code via specially crafted web pages. **Update Chrome to version 137.0.7151.68 or later immediately.**\n\n\n**Section 3: Qualcomm Vulnerabilities (Likely affecting mobile devices)**\n\n* **Multiple Qualcomm Vulnerabilities (HIGH): Information Disclosure & Memory Corruption:** Several vulnerabilities in Qualcomm's software could lead to information leaks or crashes.  These affect various aspects of network communication and virtual machine management.  Check for updates from your device manufacturer.  Specific CVEs: CVE-2024-53019, CVE-2024-53020, CVE-2024-53021, CVE-2024-53026, CVE-2024-53010, CVE-2025-21463.\n\n\n**General Recommendations:**\n\n* **Update all software promptly:**  This includes operating systems, browsers, plugins, and themes.\n* **Enable automatic updates:**  This helps ensure you're always protected against the latest threats.\n* **Be cautious of suspicious links and attachments:**  Avoid clicking on links or opening attachments from unknown sources.\n* **Use strong passwords:**  Choose unique and complex passwords for all your accounts.\n\n\nThis is a summary; refer to the provided links for detailed information.  Act now to protect your systems!\n",
+    "cve_count": 20,
+    "sent_to_telegram": true
+  },
+  {
+    "timestamp": "2025-06-10 18:53:23",
+    "summary": "**Urgent Security Updates Needed!**\n\nSeveral critical and high-severity vulnerabilities have been identified.  Update your software immediately!\n\n**Section 1: WordPress Vulnerabilities**\n\n* **CVE-2025-4797 (CRITICAL): Golo WordPress Theme - Account Takeover:**  Attackers can log in as any user (including admins) knowing only their email address.  **Update Golo theme to version 1.7.1 or higher.**\n\n* **CVE-2025-4224 (HIGH): wpForo + wpForo Advanced Attachments - Stored XSS:**  Authenticated users with sufficient privileges can inject malicious scripts.  **Update wpForo plugins to version 3.1.4 or higher.**\n\n\n**Section 2: Google Chrome Vulnerabilities**\n\n* **CVE-2025-5068 (HIGH) & CVE-2025-5419 (HIGH): Google Chrome - Memory Corruption:**  These vulnerabilities in Chrome's Blink and V8 engines could allow attackers to crash or compromise your browser via malicious websites.  **Update Google Chrome to version 137.0.7151.68 or higher.**\n\n\n**Section 3: Qualcomm Vulnerabilities (Various)**\n\n* **Multiple CVEs (HIGH): Qualcomm - Information Disclosure & Memory Corruption:**  These vulnerabilities in Qualcomm components affect various aspects of network communication and virtual machine management.  They could lead to information leaks or system crashes.  **Check for updates from your device manufacturer.**  Specific details vary by CVE (see original data for specifics).\n\n\n**General Recommendations:**\n\n* **Update all software promptly:**  This includes operating systems, browsers, plugins, and themes.\n* **Enable automatic updates:**  This helps ensure you're always running the latest, most secure versions.\n* **Be cautious of suspicious links and websites:** Avoid clicking on links from unknown sources.\n* **Use strong, unique passwords:**  This helps limit the impact of potential breaches.\n\n\nThis is a summary; refer to the original CVE details for complete information.\n",
+    "cve_count": 20,
+    "sent_to_telegram": true
+  },
+  {
+    "timestamp": "2025-06-10 18:55:29",
+    "summary": "\u26a0\ufe0f **Urgent Security Alert: Multiple Critical Vulnerabilities Discovered**\n\nThis message summarizes several critical vulnerabilities affecting Tenda routers and PHPGurukul systems.  Immediate action is required.\n\n**I. Tenda Router Buffer Overflow Vulnerabilities (CRITICAL):**\n\n* **Affected Devices:** Tenda AC15 (15.03.05.19_multi), Tenda AC6 (15.03.05.16), Tenda AC7 (15.03.06.44)\n* **Vulnerability Type:** Multiple buffer overflow vulnerabilities in various functions related to network settings (LAN IP, PPTP users, remote web management, reboot timer).  Attackers can exploit these by manipulating specific input parameters.\n* **Impact:** Complete compromise of the router, allowing attackers to take control, steal data, and launch further attacks.\n* **Recommendation:**  Update your Tenda router firmware immediately.  If updates are unavailable, consider replacing the router.\n\n\n**II. PHPGurukul SQL Injection Vulnerabilities (CRITICAL & HIGH):**\n\n* **Affected Systems:** PHPGurukul BP Monitoring Management System 1.0, PHPGurukul Maid Hiring Management System 1.0, Code-Projects Patient Record Management System 1.0\n* **Vulnerability Type:** SQL injection vulnerabilities in various PHP files. Attackers can manipulate input fields to execute malicious SQL commands.\n* **Impact:** Database compromise, data theft, and website defacement.  In the case of medical systems, patient data could be compromised.\n* **Recommendation:** Update the affected PHPGurukul systems immediately. If updates are unavailable, consider migrating to a more secure alternative.  For Code-Projects Patient Record Management System, contact the vendor for updates or consider replacing the system.\n\n**III. Code-Projects Patient Record Management System SQL Injection (MEDIUM):**\n\n* **Affected System:** Code-Projects Patient Record Management System 1.0\n* **Vulnerability Type:** SQL injection vulnerability in `urinalysis_record.php`.\n* **Impact:** Potential compromise of patient data.\n* **Recommendation:** Contact the vendor for updates or consider replacing the system.\n\n**Actionable Steps:**\n\n* **Update Firmware:** Immediately update your Tenda router firmware to the latest version.\n* **Patch Systems:** Update all affected PHPGurukul systems and the Code-Projects Patient Record Management System.\n* **Monitor Systems:** Closely monitor your systems for any suspicious activity.\n* **Consult Experts:** If you are unsure how to address these vulnerabilities, consult a cybersecurity professional.\n\n\nThis information is for awareness and guidance only.  Always refer to official vendor advisories for the most accurate and up-to-date information.\n",
+    "cve_count": 20,
+    "sent_to_telegram": true
+  },
+  {
+    "timestamp": "2025-06-10 18:55:32",
+    "summary": "**Urgent Security Alert: Multiple Critical Vulnerabilities Discovered**\n\nSeveral critical vulnerabilities have been identified affecting various systems.  Immediate action is required to mitigate the risks.\n\n**I. Tenda Router Buffer Overflow Vulnerabilities (HIGH Severity):**\n\n* **Affected Devices:** Tenda AC15 (15.03.05.19_multi), Tenda AC6 (15.03.05.16), Tenda AC7 (15.03.06.44)\n* **Vulnerability Type:** Multiple buffer overflow vulnerabilities in various functions related to network settings (LAN IP, PPTP user list, remote web management, reboot timer).  Attackers can exploit these by manipulating specific input parameters.\n* **Impact:**  Complete compromise of the router, allowing attackers to take control, steal data, and launch further attacks.\n* **Recommendation:** Update your Tenda router firmware immediately to the latest version if a patch is available.  If an update isn't available, consider replacing the router.\n\n\n**II. PHPGurukul Web Application SQL Injection Vulnerabilities (HIGH Severity):**\n\n* **Affected Applications:** PHPGurukul BP Monitoring Management System 1.0, PHPGurukul Maid Hiring Management System 1.0\n* **Vulnerability Type:** SQL injection vulnerabilities in registration and booking request processing. Attackers can manipulate input fields to execute malicious SQL code.\n* **Impact:** Data breaches, website defacement, and complete server compromise.\n* **Recommendation:** Update the affected applications to patched versions if available. If not, consider removing the applications or implementing robust input sanitization and validation measures.\n\n\n**III. Code-Projects Patient Record Management System SQL Injection Vulnerability (MEDIUM Severity):**\n\n* **Affected Application:** Code-Projects Patient Record Management System 1.0\n* **Vulnerability Type:** SQL injection vulnerability in urinalysis record processing.\n* **Impact:** Potential data breach of patient records.\n* **Recommendation:** Update the application to a patched version if available.  If not, implement input validation and sanitization to prevent SQL injection attacks.\n\n\n**General Recommendations:**\n\n* **Update Software:** Keep all software and firmware up-to-date to patch known vulnerabilities.\n* **Strong Passwords:** Use strong, unique passwords for all devices and accounts.\n* **Security Audits:** Regularly conduct security audits to identify and address potential vulnerabilities.\n* **Network Segmentation:** Isolate sensitive systems from the internet whenever possible.\n\nThis is a critical security alert.  Take immediate action to protect your systems.\n",
+    "cve_count": 20,
+    "sent_to_telegram": true
+  },
+  {
+    "timestamp": "2025-06-10 20:05:23",
+    "summary": "**Urgent Security Updates Needed!**\n\nSeveral critical and high-severity vulnerabilities have been identified.  Update your software immediately!\n\n**Section 1: WordPress Vulnerabilities**\n\n* **CVE-2025-4797 (CRITICAL): Golo WordPress Theme - Account Takeover:**  Attackers can easily take over any user account (including admin) if they know the email address.  **Update to version 1.7.1 or later immediately.**\n\n* **CVE-2025-4224 (HIGH): wpForo + wpForo Advanced Attachments Plugin - Stored XSS:**  Authenticated users with sufficient privileges can inject malicious scripts into the site.  **Update to version 3.1.4 or later immediately.**\n\n\n**Section 2: Google Chrome Vulnerabilities**\n\n* **CVE-2025-5068 (HIGH) & CVE-2025-5419 (HIGH): Google Chrome - Memory Corruption:**  These vulnerabilities in Chrome's rendering engine (Blink and V8) could allow attackers to crash or take control of your browser via specially crafted websites.  **Update Chrome to version 137.0.7151.68 or later immediately.**\n\n\n**Section 3: Qualcomm Vulnerabilities (Likely affecting mobile devices)**\n\n* **Multiple CVEs (HIGH): Qualcomm - Information Disclosure & Memory Corruption:**  Several vulnerabilities in Qualcomm components could lead to information leaks or crashes.  These affect various aspects of network communication and virtual machine management.  **Check for updates from your device manufacturer.**  Specific details are complex and require checking your device's update channels.\n\n\n**General Recommendations:**\n\n* **Update all software promptly:**  This includes operating systems, browsers, plugins, and themes.\n* **Enable automatic updates:**  This ensures you receive security patches as soon as they are released.\n* **Be cautious of suspicious links and websites:** Avoid clicking on links from unknown sources.\n* **Use strong passwords:**  Choose unique and complex passwords for all your accounts.\n\n\nThis is a summary; refer to the provided links for complete details.  Act now to protect your systems!\n",
+    "cve_count": 20,
+    "sent_to_telegram": true
+  },
+  {
+    "timestamp": "2025-06-10 20:06:03",
+    "summary": "\u26a0\ufe0f **Urgent Security Advisories: Multiple Vulnerabilities Discovered**\n\nThis message summarizes several critical vulnerabilities affecting various devices and systems.  Immediate action is recommended.\n\n**Section 1:  Critical Remote Code Execution (RCE) Vulnerabilities**\n\n* **CVE-2025-5847 (Tenda AC9 Router):**  A critical vulnerability in the Tenda AC9 router (firmware 15.03.02.13) allows remote attackers to execute arbitrary code via a stack-based buffer overflow. This could lead to complete compromise of the device.\n    * **Impact:** Full device takeover.\n    * **Recommendation:** Update your Tenda AC9 router firmware immediately.  Check the manufacturer's website for updates.\n\n**Section 2:  Critical Command Injection Vulnerabilities (Quantenna Wi-Fi Chipset)**\n\n* **CVE-2025-32455, CVE-2025-32456, CVE-2025-32457, CVE-2025-32458, CVE-2025-32459 (Quantenna Wi-Fi Chipset):**  Multiple command injection vulnerabilities exist in the `router_command.sh` script within Quantenna Wi-Fi chipsets (versions up to 8.0.0.28).  Attackers can execute arbitrary commands on the affected device.\n    * **Impact:**  Complete device compromise, data theft, and system disruption.\n    * **Recommendation:** Contact your device manufacturer for firmware updates or patches.  Implement the vendor's best practices guide if available.  This vulnerability is unpatched as of this advisory.\n\n**Section 3: Critical Command Injection Vulnerability (Microhard Devices)**\n\n* **CVE-2025-35004 (Microhard BulletLTE-NA2 & IPn4Gii-NA2):** A post-authentication command injection vulnerability in the `AT+MFIP` command allows privilege escalation on Microhard BulletLTE-NA2 and IPn4Gii-NA2 devices.\n    * **Impact:**  Complete device compromise and unauthorized access.\n    * **Recommendation:** Check the Microhard support website for updates and patches.  This vulnerability is currently unpatched.\n\n**Section 4: Medium Severity Vulnerabilities (OpenHarmony)**\n\n* **CVE-2025-27131 (OpenHarmony):** Denial of Service (DoS) vulnerability in OpenHarmony v5.0.3 and earlier.\n* **CVE-2025-24493 (OpenHarmony):** Information leak vulnerability due to a race condition in OpenHarmony v5.0.3 and earlier.\n* **CVE-2025-26691 (OpenHarmony):** Information leak vulnerability due to improper permission handling in OpenHarmony v5.0.3 and earlier.\n    * **Impact:**  Denial of service, data leaks.\n    * **Recommendation:** Update to the latest version of OpenHarmony.\n\n\n**General Recommendations:**\n\n* **Keep your software updated:** Regularly check for and install security updates for all your devices and software.\n* **Strong passwords:** Use strong, unique passwords for all your devices and accounts.\n* **Network security:** Implement strong network security measures, such as firewalls and intrusion detection systems.\n\n\nThis is a summary; refer to the provided links for detailed information.  Act promptly to mitigate these risks.\n",
+    "cve_count": 20,
+    "sent_to_telegram": false
+  },
+  {
+    "timestamp": "2025-06-10 20:06:27",
+    "summary": "\u26a0\ufe0f **Urgent Security Advisories: Multiple Critical Vulnerabilities Discovered**\n\nThis message summarizes several critical vulnerabilities affecting various devices and systems.  Immediate action is recommended.\n\n**Section 1:  Stack-Based Buffer Overflow (High Severity)**\n\n* **CVE-2025-5847 (Tenda AC9 Router):** A critical vulnerability in the Tenda AC9 router (version 15.03.02.13) allows remote attackers to exploit a stack-based buffer overflow via manipulated HTTP requests. This could lead to complete system compromise.\n    * **Impact:**  Remote code execution, total device control.\n    * **Recommendation:** Update your Tenda AC9 router firmware immediately.  Check the manufacturer's website for updates.\n\n**Section 2: Command Injection Vulnerabilities (High Severity)**\n\n* **CVE-2025-32455, CVE-2025-32456, CVE-2025-32457, CVE-2025-32458, CVE-2025-32459 (Quantenna Wi-Fi Chipsets):** Multiple command injection vulnerabilities exist in the `router_command.sh` script within Quantenna Wi-Fi chipsets (versions up to 8.0.0.28).  Attackers with local access can execute arbitrary commands.\n    * **Impact:**  Complete system compromise, data theft, denial of service.\n    * **Recommendation:**  Contact your device manufacturer for firmware updates or patches.  Follow the vendor's best practices guide for mitigating this risk until a patch is available.\n\n* **CVE-2025-35004 (Microhard BulletLTE-NA2 & IPn4Gii-NA2):** A post-authentication command injection vulnerability in the `AT+MFIP` command allows privilege escalation on Microhard BulletLTE-NA2 and IPn4Gii-NA2 devices.\n    * **Impact:**  Complete system compromise, unauthorized access.\n    * **Recommendation:** Contact Microhard for firmware updates or mitigation strategies.\n\n**Section 3: OpenHarmony Vulnerabilities (Medium Severity)**\n\n* **OpenHarmony (versions 5.0.3 and earlier):**  Multiple vulnerabilities exist, including denial-of-service (DoS) via improper input (CVE-2025-27131), information leaks due to race conditions (CVE-2025-24493), and information leaks due to permission issues (CVE-2025-26691).\n    * **Impact:**  Denial of service, data leaks.\n    * **Recommendation:** Update to the latest version of OpenHarmony.\n\n\n**General Recommendations:**\n\n* **Keep your software updated:** Regularly check for and install security updates for all your devices and software.\n* **Strong passwords:** Use strong, unique passwords for all your devices and accounts.\n* **Network security:** Implement strong network security measures, such as firewalls and intrusion detection systems.\n\n\nThis information is for awareness and should not be considered exhaustive.  Consult the provided references for detailed information.  Act promptly to mitigate these risks.\n",
+    "cve_count": 20,
+    "sent_to_telegram": false
+  },
+  {
+    "timestamp": "2025-06-10 20:06:58",
+    "summary": "**Urgent Security Alert: Multiple Critical Vulnerabilities Discovered**\n\nSeveral critical vulnerabilities have been identified in Tenda routers and PHPGurukul systems.  Immediate action is required to mitigate the risks.\n\n**I. Tenda Router Vulnerabilities (Buffer Overflows):**\n\n* **Affected Devices:** Tenda AC15 (15.03.05.19_multi), Tenda AC6 (15.03.05.16), Tenda AC7 (15.03.06.44)\n* **Vulnerability Type:**  Multiple critical buffer overflow vulnerabilities exist in various functions handling network settings and user management.  Attackers can exploit these by manipulating specific input parameters.\n* **Impact:**  Successful exploitation could allow attackers to remotely execute arbitrary code, taking complete control of your router.\n* **Recommendation:**  Update your Tenda router firmware to the latest version immediately.  If an update is not available, consider replacing the router.\n\n\n**II. PHPGurukul System Vulnerabilities (SQL Injection):**\n\n* **Affected Systems:** PHPGurukul BP Monitoring Management System (1.0), PHPGurukul Maid Hiring Management System (1.0), Code-Projects Patient Record Management System (1.0)\n* **Vulnerability Type:**  SQL injection vulnerabilities allow attackers to inject malicious SQL code into database queries.\n* **Impact:**  Attackers could steal, modify, or delete sensitive data from the database, potentially leading to data breaches and system compromise.\n* **Recommendation:**\n    * **PHPGurukul Systems:** Update to the latest version if available.  If not, consider migrating to a more secure alternative.  Implement robust input validation and sanitization.\n    * **Code-Projects System:**  Similar to PHPGurukul, update if possible, migrate to a secure alternative, and implement strong input validation.\n\n**III. Code-Projects Patient Record Management System (SQL Injection):**\n\n* **Affected System:** Code-Projects Patient Record Management System (1.0)\n* **Vulnerability Type:** SQL injection vulnerability in `urinalysis_record.php`.\n* **Impact:**  Compromise of patient data.\n* **Recommendation:** Update the system if a patch is available.  If not, consider replacing the system with a more secure alternative.  Implement robust input validation and sanitization.\n\n\n**General Recommendations:**\n\n* **Keep Software Updated:** Regularly update all software and firmware to the latest versions to patch known vulnerabilities.\n* **Strong Passwords:** Use strong, unique passwords for all devices and accounts.\n* **Security Audits:** Regularly perform security audits to identify and address potential vulnerabilities.\n\n\nThis is a critical security issue.  Take immediate action to protect your systems and data.\n",
+    "cve_count": 20,
+    "sent_to_telegram": false
+  },
+  {
+    "timestamp": "2025-06-10 20:06:59",
+    "summary": "\u26a0\ufe0f **Urgent Security Alert: Multiple Critical Vulnerabilities Discovered**\n\nThis message summarizes several critical vulnerabilities affecting Tenda routers and PHPGurukul systems.  Immediate action is required.\n\n**I. Tenda Router Buffer Overflow Vulnerabilities (CRITICAL):**\n\n* **Affected Devices:** Tenda AC15 (15.03.05.19_multi), Tenda AC6 (15.03.05.16), Tenda AC7 (15.03.06.44)\n* **Vulnerability Type:** Multiple buffer overflow vulnerabilities in various functions related to network settings (LAN IP, PPTP user list, remote web management, reboot timer).  Attackers can exploit these by manipulating specific input parameters.\n* **Impact:** Complete compromise of the router, allowing attackers to take control, steal data, and perform malicious actions.\n* **Recommendation:** Update your Tenda router firmware immediately to the latest version.  If an update is not available, consider replacing the router.\n\n\n**II. PHPGurukul SQL Injection Vulnerabilities (CRITICAL & HIGH):**\n\n* **Affected Systems:** PHPGurukul BP Monitoring Management System 1.0, PHPGurukul Maid Hiring Management System 1.0, Code-Projects Patient Record Management System 1.0\n* **Vulnerability Type:** SQL injection vulnerabilities in various PHP scripts. Attackers can inject malicious SQL code to access, modify, or delete data from the database.\n* **Impact:** Data breaches, database compromise, and potential system takeover.\n* **Recommendation:**\n    * **PHPGurukul Systems:** Update to the latest version if available.  If not, consider migrating to a more secure alternative.  Implement robust input validation and sanitization.\n    * **Code-Projects System:**  Similar actions as above.  Contact the vendor for patches or updates.\n\n\n**III. Code-Projects SQL Injection Vulnerability (MEDIUM):**\n\n* **Affected System:** Code-Projects Patient Record Management System 1.0\n* **Vulnerability Type:** SQL injection vulnerability in the `urinalysis_record.php` file.\n* **Impact:** Potential data breach of patient records.\n* **Recommendation:** Update the system to the latest version if available.  Implement input validation and sanitization.\n\n\n**Actionable Steps:**\n\n* **Immediately update affected devices and software to the latest versions.**\n* **Implement strong passwords and enable two-factor authentication where possible.**\n* **Regularly check for security updates and patches.**\n* **Monitor your systems for suspicious activity.**\n\n\nThis information is for awareness and guidance only.  Consult official security advisories for detailed information and remediation steps.\n",
+    "cve_count": 20,
+    "sent_to_telegram": true
+  },
+  {
+    "timestamp": "2025-06-10 20:07:24",
+    "summary": "\u26a0\ufe0f **Urgent Security Advisories: Multiple Critical Vulnerabilities Discovered**\n\nThis message summarizes several critical vulnerabilities affecting various devices and systems.  Immediate action is recommended.\n\n**Section 1:  Stack-Based Buffer Overflow (High Severity)**\n\n* **CVE-2025-5847 (Tenda AC9 Router):** A critical vulnerability in the Tenda AC9 router (firmware 15.03.02.13) allows remote attackers to exploit a stack-based buffer overflow via manipulation of the `remoteIp` argument. This could lead to complete system compromise.\n    * **Impact:**  Complete device takeover.\n    * **Recommendation:** Update your Tenda AC9 router firmware immediately.  Check the manufacturer's website for updates.\n\n**Section 2: Command Injection Vulnerabilities (High Severity)**\n\n* **CVE-2025-32455, CVE-2025-32456, CVE-2025-32457, CVE-2025-32458, CVE-2025-32459 (Quantenna Wi-Fi Chipset):** Multiple command injection vulnerabilities exist in the `router_command.sh` script within Quantenna Wi-Fi chipsets (versions up to 8.0.0.28).  Attackers can inject malicious commands through various arguments (`run_cmd`, `put_file_to_qtn`, `get_file_from_qtn`, `get_syslog_from_qtn`, `sync_time`).\n    * **Impact:**  Complete device takeover, data theft, and denial of service.\n    * **Recommendation:** Contact your device manufacturer for firmware updates or mitigation strategies.  Follow the vendor's best practices guide.\n\n* **CVE-2025-35004 (Microhard BulletLTE-NA2 & IPn4Gii-NA2):** A post-authentication command injection vulnerability in the `AT+MFIP` command allows privilege escalation.\n    * **Impact:**  Privilege escalation, leading to unauthorized access and control.\n    * **Recommendation:** Contact Microhard for firmware updates or mitigation advice.\n\n**Section 3: OpenHarmony Vulnerabilities (Medium Severity)**\n\n* **CVE-2025-27131 (OpenHarmony):**  Improper input handling in OpenHarmony (v5.0.3 and earlier) can lead to denial-of-service (DoS) attacks.\n* **CVE-2025-24493 (OpenHarmony):** A race condition in OpenHarmony (v5.0.3 and earlier) allows information leaks.\n* **CVE-2025-26691 (OpenHarmony):**  Improper permission handling in OpenHarmony (v5.0.3 and earlier) can lead to information leaks.\n    * **Impact:** Denial of service, information disclosure.\n    * **Recommendation:** Update to the latest version of OpenHarmony.\n\n\n**General Recommendations:**\n\n* **Keep your software updated:** Regularly check for and install security updates from manufacturers.\n* **Strong passwords:** Use strong, unique passwords for all devices.\n* **Network security:** Implement strong network security measures, including firewalls and intrusion detection systems.\n\nThis is a summary; consult the provided references for detailed information.  Act promptly to mitigate these risks.\n",
+    "cve_count": 20,
+    "sent_to_telegram": false
+  },
+  {
+    "timestamp": "2025-06-10 20:07:43",
+    "summary": "\u26a0\ufe0f **Urgent Security Advisories: Multiple Critical Vulnerabilities Discovered**\n\nThis message summarizes several critical vulnerabilities affecting various devices and systems.  Immediate action is recommended.\n\n**Section 1:  Stack-Based Buffer Overflow (High Severity)**\n\n* **CVE-2025-5847 (Tenda AC9 Router):** A critical vulnerability in the Tenda AC9 router (version 15.03.02.13) allows remote attackers to exploit a stack-based buffer overflow via manipulation of the `remoteIp` argument. This could lead to complete system compromise.\n    * **Impact:**  Complete device takeover.\n    * **Recommendation:** Update your Tenda AC9 router firmware immediately.  Check the vendor's website for updates.\n\n**Section 2: Command Injection Vulnerabilities (High Severity)**\n\n* **CVE-2025-32455, CVE-2025-32456, CVE-2025-32457, CVE-2025-32458, CVE-2025-32459 (Quantenna Wi-Fi Chipset):** Multiple command injection vulnerabilities exist in the `router_command.sh` script within Quantenna Wi-Fi chipsets (versions up to 8.0.0.28).  Attackers can execute arbitrary commands on the affected device.\n    * **Impact:**  Complete device takeover, data theft, and system disruption.\n    * **Recommendation:** Contact your device manufacturer for firmware updates or patches.  Implement the vendor's best practices guide in the meantime.\n\n* **CVE-2025-35004 (Microhard BulletLTE-NA2 & IPn4Gii-NA2):** A post-authentication command injection vulnerability in the `AT+MFIP` command allows privilege escalation on Microhard BulletLTE-NA2 and IPn4Gii-NA2 devices.\n    * **Impact:**  Elevated privileges, allowing attackers to control the device.\n    * **Recommendation:** Check the vendor's website for updates and patches.\n\n**Section 3: OpenHarmony Vulnerabilities (Medium Severity)**\n\n* **CVE-2025-27131 (OpenHarmony):**  Improper input handling in OpenHarmony (v5.0.3 and earlier) can lead to Denial of Service (DoS) attacks.\n* **CVE-2025-24493 (OpenHarmony):** A race condition in OpenHarmony (v5.0.3 and earlier) can cause information leaks.\n* **CVE-2025-26691 (OpenHarmony):**  Improper permission handling in OpenHarmony (v5.0.3 and earlier) can lead to information leaks.\n    * **Impact:**  Denial of service, data leaks.\n    * **Recommendation:** Update to the latest version of OpenHarmony.\n\n\n**General Recommendations:**\n\n* **Keep your software updated:** Regularly check for and install security updates for all your devices and software.\n* **Strong passwords:** Use strong, unique passwords for all your devices and accounts.\n* **Network security:** Implement strong network security measures, such as firewalls and intrusion detection systems.\n\n\nThis information is for awareness and should not be considered exhaustive.  Always refer to official vendor advisories for the most up-to-date information and remediation steps.\n",
+    "cve_count": 20,
+    "sent_to_telegram": false
+  },
+  {
+    "timestamp": "2025-06-10 20:07:58",
+    "summary": "\u26a0\ufe0f **Urgent Security Advisories: Multiple Critical Vulnerabilities Discovered**\n\nThis message summarizes several critical vulnerabilities affecting various devices and systems.  Immediate action is recommended.\n\n**Section 1:  Critical Remote Code Execution (RCE) Vulnerabilities**\n\n* **CVE-2025-5847 (Tenda AC9 Router):**  A critical vulnerability in the Tenda AC9 router (firmware 15.03.02.13) allows remote attackers to execute arbitrary code via a stack-based buffer overflow.  This could lead to complete compromise of the device.\n    * **Impact:** Full device takeover.\n    * **Recommendation:** Update your Tenda AC9 router firmware immediately.  Check the vendor's website for updates.\n\n**Section 2: Critical Command Injection Vulnerabilities (Quantenna Wi-Fi Chipset)**\n\n* **CVE-2025-32455, CVE-2025-32456, CVE-2025-32457, CVE-2025-32458, CVE-2025-32459 (Quantenna Wi-Fi Chipset):** Multiple command injection vulnerabilities exist in the `router_command.sh` script within Quantenna Wi-Fi chipsets (versions up to 8.0.0.28).  Attackers can execute arbitrary commands on the affected device.\n    * **Impact:** Full device takeover, data theft, and system disruption.\n    * **Recommendation:** Contact your device manufacturer for firmware updates or patches.  Follow the vendor's best practices guide for mitigating this risk until a patch is available.  (See references for the guide).\n\n**Section 3: Critical Command Injection Vulnerability (Microhard Devices)**\n\n* **CVE-2025-35004 (Microhard BulletLTE-NA2 & IPn4Gii-NA2):** A post-authentication command injection vulnerability in the `AT+MFIP` command allows privilege escalation on Microhard BulletLTE-NA2 and IPn4Gii-NA2 devices.\n    * **Impact:** Full device takeover.\n    * **Recommendation:** Contact Microhard for firmware updates or patches.\n\n**Section 4: Medium Severity Vulnerabilities (OpenHarmony)**\n\n* **CVE-2025-27131 (OpenHarmony):** Denial-of-Service (DoS) vulnerability due to improper input handling in OpenHarmony v5.0.3 and earlier.\n* **CVE-2025-24493 (OpenHarmony):** Information leak vulnerability due to a race condition in OpenHarmony v5.0.3 and earlier.\n* **CVE-2025-26691 (OpenHarmony):** Information leak vulnerability due to improper permission handling in OpenHarmony v5.0.3 and earlier.\n    * **Impact:**  DoS, data leaks.\n    * **Recommendation:** Update to the latest version of OpenHarmony.\n\n\n**General Recommendations:**\n\n* **Keep your software updated:** Regularly update firmware and software on all your devices.\n* **Strong passwords:** Use strong, unique passwords for all devices and accounts.\n* **Network segmentation:** Isolate vulnerable devices from your main network if possible.\n* **Monitor your network:** Regularly monitor your network for suspicious activity.\n\n\nThis information is for awareness and should not be considered exhaustive. Always refer to official vendor advisories for the most accurate and up-to-date information.\n",
+    "cve_count": 20,
+    "sent_to_telegram": true
+  },
+  {
+    "timestamp": "2025-06-10 20:08:06",
+    "summary": "\u26a0\ufe0f **Urgent Security Advisories: Multiple Critical Vulnerabilities Discovered**\n\nThis message summarizes several critical vulnerabilities affecting various devices and systems.  Immediate action is recommended.\n\n**Section 1:  Stack-Based Buffer Overflow (High Severity)**\n\n* **CVE-2025-5847 (Tenda AC9 Router):** A critical vulnerability in the Tenda AC9 router (version 15.03.02.13) allows remote attackers to exploit a stack-based buffer overflow via manipulation of the `remoteIp` argument. This could lead to complete compromise of the router.\n    * **Impact:**  Complete system takeover.\n    * **Recommendation:** Update your Tenda AC9 router firmware immediately.  Check the manufacturer's website for updates.\n\n**Section 2: Command Injection Vulnerabilities (High Severity)**\n\n* **CVE-2025-32455, CVE-2025-32456, CVE-2025-32457, CVE-2025-32458, CVE-2025-32459 (Quantenna Wi-Fi Chipset):** Multiple command injection vulnerabilities exist in the `router_command.sh` script within Quantenna Wi-Fi chipsets (versions up to 8.0.0.28).  Attackers can inject malicious commands through various arguments (`run_cmd`, `put_file_to_qtn`, `get_file_from_qtn`, `get_syslog_from_qtn`, `sync_time`).\n    * **Impact:**  Complete system compromise, data theft, and denial of service.\n    * **Recommendation:** Contact your device manufacturer for firmware updates or follow the vendor's best practices guide for mitigating these vulnerabilities.  This is likely unpatched.\n\n* **CVE-2025-35004 (Microhard BulletLTE-NA2 & IPn4Gii-NA2):** A post-authentication command injection vulnerability in the `AT+MFIP` command allows privilege escalation.\n    * **Impact:**  Elevated privileges, leading to system compromise.\n    * **Recommendation:** Check the Microhard support website for updates and follow their recommendations.  This vulnerability is likely unpatched.\n\n\n**Section 3: OpenHarmony Vulnerabilities (Medium Severity)**\n\n* **CVE-2025-27131 (OpenHarmony):**  Improper input handling in OpenHarmony (v5.0.3 and earlier) can lead to denial-of-service (DoS) attacks.\n* **CVE-2025-24493 (OpenHarmony):** A race condition in OpenHarmony (v5.0.3 and earlier) allows information leaks.\n* **CVE-2025-26691 (OpenHarmony):**  Improper permission handling in OpenHarmony (v5.0.3 and earlier) allows information leaks.\n    * **Impact:** Denial of service, information disclosure.\n    * **Recommendation:** Update your OpenHarmony devices to the latest version.\n\n\n**General Recommendation:** Regularly update your firmware and software to patch known vulnerabilities.  Be cautious of untrusted sources and only download updates from official websites.  Implement strong passwords and enable security features where available.\n",
+    "cve_count": 20,
+    "sent_to_telegram": true
+  },
+  {
+    "timestamp": "2025-06-10 20:10:10",
+    "summary": "\u26a0\ufe0f **Urgent Security Alert: Multiple Critical Vulnerabilities Discovered** \u26a0\ufe0f\n\nThis message summarizes several critical vulnerabilities affecting Tenda routers and PHPGurukul systems.  Immediate action is required.\n\n**I. Tenda Router Buffer Overflow Vulnerabilities (CRITICAL):**\n\n* **Affected Devices:** Tenda AC15 (15.03.05.19_multi), Tenda AC6 (15.03.05.16), Tenda AC7 (15.03.06.44)\n* **Vulnerability Type:** Multiple buffer overflow vulnerabilities in various functions related to network settings (LAN IP, PPTP users, remote web management, reboot timer).  Attackers can exploit these by manipulating specific input fields.\n* **Impact:** Complete compromise of the router, allowing attackers to take control, steal data, and launch further attacks.\n* **Recommendation:**  Update your Tenda router firmware immediately.  If an update is unavailable, consider replacing the router.\n\n\n**II. PHPGurukul SQL Injection Vulnerabilities (CRITICAL & HIGH):**\n\n* **Affected Systems:** PHPGurukul BP Monitoring Management System 1.0, PHPGurukul Maid Hiring Management System 1.0, Code-Projects Patient Record Management System 1.0\n* **Vulnerability Type:** SQL injection vulnerabilities in various PHP scripts. Attackers can inject malicious SQL code to access, modify, or delete data.\n* **Impact:** Data breaches, database compromise, and potential system takeover.\n* **Recommendation:** Update the affected PHPGurukul systems immediately. If updates are not available, consider migrating to alternative, secure systems.  For Code-Projects Patient Record Management System, contact the vendor for updates or a secure alternative.\n\n\n**III. Code-Projects SQL Injection Vulnerability (MEDIUM):**\n\n* **Affected System:** Code-Projects Patient Record Management System 1.0\n* **Vulnerability Type:** SQL injection vulnerability in the `urinalysis_record.php` file.\n* **Impact:** Potential data breach of patient records.\n* **Recommendation:** Contact the vendor for updates or a secure alternative.\n\n\n**All vulnerabilities have public exploits available. Act now to mitigate the risk.**\n",
+    "cve_count": 20,
+    "sent_to_telegram": true
+  },
+  {
+    "timestamp": 1749597783,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 1
+  },
+  {
+    "timestamp": 1749597785,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 1
+  },
+  {
+    "timestamp": 1749597806,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 1
+  },
+  {
+    "timestamp": 1749597874,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 1
+  },
+  {
+    "timestamp": 1749597879,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 1
+  },
+  {
+    "timestamp": 1749601510,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 1
+  },
+  {
+    "timestamp": 1749601557,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": true,
+    "days_back": 1
+  },
+  {
+    "timestamp": 1749601557,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 1
+  },
+  {
+    "timestamp": 1749601558,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 1
+  },
+  {
+    "timestamp": 1749601622,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": true,
+    "days_back": 1
+  },
+  {
+    "timestamp": 1749601624,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 1
+  },
+  {
+    "timestamp": 1749601652,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 1
+  },
+  {
+    "timestamp": 1749601654,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 1
+  },
+  {
+    "timestamp": 1749601654,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 1
+  },
+  {
+    "timestamp": 1749601673,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 1
+  },
+  {
+    "timestamp": 1749601729,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 2
+  },
+  {
+    "timestamp": 1749601814,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 2
+  },
+  {
+    "timestamp": 1749601816,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 2
+  },
+  {
+    "timestamp": 1749601879,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 2
+  },
+  {
+    "timestamp": 1749601931,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 2
+  },
+  {
+    "timestamp": 1749601946,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 2
+  },
+  {
+    "timestamp": 1749601948,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 2
+  },
+  {
+    "timestamp": 1749601974,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": true,
+    "days_back": 2
+  },
+  {
+    "timestamp": 1749601976,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 2
+  },
+  {
+    "timestamp": 1749601976,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 2
+  },
+  {
+    "timestamp": 1749602061,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 2
+  },
+  {
+    "timestamp": 1749602138,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": true,
+    "days_back": 2
+  },
+  {
+    "timestamp": 1749602140,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 2
+  },
+  {
+    "timestamp": 1749603813,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": true,
+    "days_back": 1
+  },
+  {
+    "timestamp": 1749603816,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 1
+  },
+  {
+    "timestamp": 1749603841,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": true,
+    "days_back": 1
+  },
+  {
+    "timestamp": 1749603863,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 1
+  },
+  {
+    "timestamp": 1749668736,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 1
+  },
+  {
+    "timestamp": 1749668812,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 1
+  },
+  {
+    "timestamp": 1749668844,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 1
+  },
+  {
+    "timestamp": 1749668845,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": true,
+    "days_back": 1
+  },
+  {
+    "timestamp": 1749668845,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 1
+  },
+  {
+    "timestamp": 1749668845,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 1
+  },
+  {
+    "timestamp": 1749668846,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": true,
+    "days_back": 1
+  },
+  {
+    "timestamp": 1749668957,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 1
+  },
+  {
+    "timestamp": 1749669148,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 12
+  },
+  {
+    "timestamp": 1749669149,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 12
+  },
+  {
+    "timestamp": 1749669233,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 12
+  },
+  {
+    "timestamp": 1749669291,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 12
+  },
+  {
+    "timestamp": 1749669291,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 12
+  },
+  {
+    "timestamp": 1749669292,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 12
+  },
+  {
+    "timestamp": 1750187556,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 12
+  },
+  {
+    "timestamp": 1750187566,
+    "summary": "CVE updates are now sent directly to Telegram. Check your Telegram for the latest security alerts.",
+    "cve_count": 20,
+    "sent_to_telegram": false,
+    "days_back": 12
+  }
+]

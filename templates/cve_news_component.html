@@ -1,0 +1,236 @@
+<!-- CVE News Component - Only Modal -->
+<!-- The button has been moved to the top of Manual Scan History section in index.html -->
+
+
+<!-- CVE Schedule Modal -->
+<div class="modal" id="cve-schedule-modal">
+  <div class="modal-background"></div>
+  <div class="modal-card" style="border-radius: var(--border-radius); overflow: hidden; max-width: 550px;">
+    <header class="modal-card-head" style="background: var(--primary-color); border: none;">
+      <p class="modal-card-title" style="color: white; font-weight: 600;"><i class="fas fa-newspaper" style="margin-right: 10px;"></i>Configure CVE News Updates</p>
+      <button class="delete" aria-label="close" id="close-cve-schedule-modal" style="background: rgba(255,255,255,0.3);"></button>
+    </header>
+    <section class="modal-card-body" style="padding: 1.5rem;">
+      <form id="cve-schedule-form">
+        <div class="field">
+          <label class="label" style="font-weight: 600; color: var(--dark-color); margin-bottom: 0.5rem;"><i class="fas fa-toggle-on" style="margin-right: 8px; color: var(--primary-color);"></i>Enable Daily CVE Updates</label>
+          <div class="control">
+            <label class="checkbox" style="background: white; padding: 0.5rem 0.75rem; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; align-items: center;">
+              <input type="checkbox" id="cve-enabled" style="margin-right: 0.5rem;"> Enable daily CVE vulnerability news updates
+            </label>
+          </div>
+        </div>
+        <div class="field" style="margin-top: 1.5rem;">
+          <label class="label" style="font-weight: 600; color: var(--dark-color); margin-bottom: 0.5rem;"><i class="fas fa-clock" style="margin-right: 8px; color: var(--primary-color);"></i>Update Time</label>
+          <div class="control has-icons-left">
+            <input class="input" type="time" id="cve-time" value="08:00" style="padding-left: 2.5rem; height: 2.75rem; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+            <span class="icon is-small is-left" style="font-size: 1rem;">
+              <i class="fas fa-hourglass" style="color: var(--primary-color);"></i>
+            </span>
+          </div>
+          <p class="help">Time when daily CVE updates will be sent to Telegram</p>
+        </div>
+        <div class="field" style="margin-top: 1.5rem;">
+          <label class="label" style="font-weight: 600; color: var(--dark-color); margin-bottom: 0.5rem;"><i class="fas fa-history" style="margin-right: 8px; color: var(--primary-color);"></i>Days Back</label>
+          <div class="control has-icons-left">
+            <input class="input" type="number" id="cve-days-back" min="1" max="30" value="1" style="padding-left: 2.5rem; height: 2.75rem; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+            <span class="icon is-small is-left" style="font-size: 1rem;">
+              <i class="fas fa-calendar-day" style="color: var(--primary-color);"></i>
+            </span>
+          </div>
+          <p class="help">Number of days back to fetch CVEs (1-30)</p>
+        </div>
+        <div class="field" style="margin-top: 1.5rem;">
+          <div class="control" style="display: flex; gap: 0.5rem;">
+            <button type="button" id="refresh-cve-news" class="button is-primary">
+              <i class="fas fa-sync-alt" style="margin-right: 5px;"></i>Send Now
+            </button>
+            <span class="help">Send CVE updates immediately to Telegram with current settings</span>
+          </div>
+        </div>
+      </form>
+    </section>
+    <footer class="modal-card-foot" style="justify-content: flex-end; background: #f5f7fa; border: none;">
+      <button id="save-cve-schedule" class="button is-primary" style="font-weight: 600;">
+        <i class="fas fa-save" style="margin-right: 8px;"></i>Save Settings
+      </button>
+      <button id="cancel-cve-schedule" class="button" style="font-weight: 500;">
+        <i class="fas fa-times" style="margin-right: 8px;"></i>Cancel
+      </button>
+    </footer>
+  </div>
+</div>
+
+<!-- CVE News JavaScript -->
+<script>
+// DOM Elements
+const openCveScheduleModalBtn = document.getElementById('open-cve-schedule-modal');
+const closeCveScheduleModalBtn = document.getElementById('close-cve-schedule-modal');
+const cveScheduleModal = document.getElementById('cve-schedule-modal');
+const cveScheduleForm = document.getElementById('cve-schedule-form');
+const cveEnabledCheckbox = document.getElementById('cve-enabled');
+const cveTimeInput = document.getElementById('cve-time');
+const cveDaysBackInput = document.getElementById('cve-days-back');
+const saveCveScheduleBtn = document.getElementById('save-cve-schedule');
+const cancelCveScheduleBtn = document.getElementById('cancel-cve-schedule');
+const refreshCveNewsBtn = document.getElementById('refresh-cve-news');
+const cveNewsContent = document.getElementById('cve-news-content');
+
+// Open and close modal
+openCveScheduleModalBtn.addEventListener('click', () => {
+  cveScheduleModal.classList.add('is-active');
+  fetchCveSchedule();
+});
+
+closeCveScheduleModalBtn.addEventListener('click', () => {
+  cveScheduleModal.classList.remove('is-active');
+});
+
+cancelCveScheduleBtn.addEventListener('click', () => {
+  cveScheduleModal.classList.remove('is-active');
+});
+
+// Fetch current CVE schedule settings
+async function fetchCveSchedule() {
+  try {
+    const response = await fetch('/api/cve_schedule');
+    const schedule = await response.json();
+    
+    if (response.ok) {
+      cveEnabledCheckbox.checked = schedule.enabled || false;
+      cveTimeInput.value = schedule.time || '08:00';
+      cveDaysBackInput.value = schedule.days_back || 1;
+    } else {
+      console.error('Error fetching CVE schedule:', schedule.error);
+    }
+  } catch (error) {
+    console.error('Error fetching CVE schedule:', error);
+  }
+}
+
+// Save CVE schedule settings
+saveCveScheduleBtn.addEventListener('click', async () => {
+  try {
+    const data = {
+      enabled: cveEnabledCheckbox.checked,
+      time: cveTimeInput.value,
+      days_back: parseInt(cveDaysBackInput.value)
+    };
+    
+    const response = await fetch('/api/cve_schedule', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    
+    const result = await response.json();
+    
+    if (response.ok) {
+      alert('CVE schedule settings saved successfully!');
+      cveScheduleModal.classList.remove('is-active');
+    } else {
+      alert(`Error: ${result.error || 'Failed to save CVE schedule settings'}`);
+    }
+  } catch (error) {
+    console.error('Error saving CVE schedule:', error);
+    alert('An error occurred while saving CVE schedule settings');
+  }
+});
+
+// Trigger CVE news update to Telegram
+async function sendCveNewsToTelegram() {
+  try {
+    // Add a query parameter with the current days_back value when sending news
+    const days_back = parseInt(cveDaysBackInput.value) || 1;
+    const response = await fetch(`/api/cve_news?days_back=${days_back}`);
+    const result = await response.json();
+    
+    if (response.ok) {
+      // Show success message
+      let statusHtml = '';
+      
+      if (result.timestamp) {
+        const date = new Date(result.timestamp * 1000);
+        statusHtml += `<div class="notification is-light is-success" style="padding: 0.75rem; margin-bottom: 1rem;">
+          <p><strong><i class="fas fa-check-circle"></i> CVE update sent to Telegram</strong></p>
+          <p><strong>Time:</strong> ${date.toLocaleString()}</p>
+          <p><strong>Days Back:</strong> ${result.days_back || days_back}</p>
+          <p><strong>CVEs Processed:</strong> ${result.cve_count || 'Unknown'}</p>
+        </div>`;
+      }
+      
+      statusHtml += `<div class="notification is-info is-light" style="margin-bottom: 1rem;">
+        <p><strong><i class="fas fa-info-circle"></i> CVE updates are now sent directly to Telegram</strong></p>
+        <p>Configure the schedule below to receive regular security alerts via Telegram. Use the "Send Now" button to trigger an immediate update.</p>
+      </div>`;
+      
+      cveNewsContent.innerHTML = statusHtml;
+    } else {
+      cveNewsContent.innerHTML = `<div class="notification is-danger is-light">
+        <p><strong><i class="fas fa-exclamation-triangle"></i> Error</strong></p>
+        <p>${result.error || result.message || 'Failed to send CVE update to Telegram'}</p>
+      </div>`;
+    }
+  } catch (error) {
+    console.error('Error sending CVE news to Telegram:', error);
+    cveNewsContent.innerHTML = '<div class="notification is-danger is-light"><p><strong><i class="fas fa-exclamation-triangle"></i> Error</strong></p><p>Failed to send CVE update to Telegram</p></div>';
+  }
+}
+
+// Helper function to get severity class for tags
+function getSeverityClass(severity) {
+  switch (severity.toLowerCase()) {
+    case 'critical':
+      return 'is-danger';
+    case 'high':
+      return 'is-warning';
+    case 'medium':
+      return 'is-info';
+    case 'low':
+      return 'is-success';
+    default:
+      return 'is-light';
+  }
+}
+
+// Send CVE news to Telegram button
+refreshCveNewsBtn.addEventListener('click', () => {
+  // Get the current days_back value from the input field
+  // If the modal is not open, we need to fetch the current setting first
+  if (!cveScheduleModal.classList.contains('is-active')) {
+    // Quick fetch of current settings to get days_back
+    fetch('/api/cve_schedule')
+      .then(response => response.json())
+      .then(schedule => {
+        if (response.ok) {
+          // Update the input value
+          cveDaysBackInput.value = schedule.days_back || 1;
+          // Then send the news to Telegram
+          sendCveNewsToTelegram();
+        } else {
+          // If we can't get the setting, use default value
+          sendCveNewsToTelegram();
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching CVE schedule:', error);
+        // If there's an error, still try to send news with default
+        sendCveNewsToTelegram();
+      });
+  } else {
+    // Modal is open, so we can use the current input value
+    sendCveNewsToTelegram();
+  }
+});
+
+// Show initial status message on page load
+document.addEventListener('DOMContentLoaded', () => {
+  cveNewsContent.innerHTML = `<div class="notification is-info is-light" style="margin-bottom: 1rem;">
+    <p><strong><i class="fas fa-info-circle"></i> CVE updates are now sent directly to Telegram</strong></p>
+    <p>Configure the schedule below to receive regular security alerts via Telegram. Use the "Send Now" button to trigger an immediate update.</p>
+  </div>`;
+});
+
+</script>
